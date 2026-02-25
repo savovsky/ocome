@@ -1,0 +1,74 @@
+name: Release - Mobile
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version (e.g., 1.0.0, 1.0.0-beta.1)"
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Type check mobile app
+        run: pnpm turbo run type-check --filter=mobile
+
+      - name: Update version in mobile/package.json and app.json
+        run: |
+          cd apps/mobile
+          npm version $VERSION --no-git-tag-version
+          jq '.expo.version = "'$VERSION'"' app.json > app.json.tmp && mv app.json.tmp app.json
+
+      - name: Create git tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add apps/mobile/package.json apps/mobile/app.json
+          git commit -m "chore(mobile): release v$VERSION"
+          git tag "mobile-v$VERSION"
+
+      - name: Push changes and tags
+        run: |
+          git push origin main
+          git push origin "mobile-v$VERSION"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: mobile-v${{ env.VERSION }}
+          body: |
+            ## Mobile App Release v${{ env.VERSION }}
+
+            See CHANGELOG.mobile.md for details.
+
+      # TODO: Configure EAS deployment
+      # - name: Deploy to Expo
+      #   uses: expo/expo-github-action@v8
+      #   with:
+      #     eas-version: latest
+      #     token: ${{ secrets.EXPO_TOKEN }}
+      #
+      # - name: Build and submit to app stores
+      #   run: |
+      #     cd apps/mobile
+      #     eas build --platform all
+      #     eas submit --platform all

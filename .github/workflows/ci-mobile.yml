@@ -1,0 +1,43 @@
+name: CI - Mobile
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "apps/mobile/**"
+      - "packages/**"
+      - ".github/workflows/ci-mobile.yml"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "apps/mobile/**"
+      - "packages/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo run type-check --filter=mobile
+      - run: pnpm turbo run lint --filter=mobile
+
+  # Placeholder for EAS build integration
+  # Uncomment and configure when ready to publish to stores
+  # eas-build:
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: rnx-kit/rnx-kit-release-action@v0
+  #       with:
+  #         project-root: apps/mobile

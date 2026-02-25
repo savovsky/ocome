@@ -1,0 +1,12 @@
+{
+  "build": {
+    "production": {
+      "ios": {
+        "buildType": "archive"
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    }
+  }
+}

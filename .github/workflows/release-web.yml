@@ -1,0 +1,67 @@
+name: Release - Web
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version (e.g., 1.0.0, 1.0.0-beta.1)"
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build web app
+        run: pnpm turbo run build --filter=web
+
+      - name: Update version in web/package.json
+        run: |
+          cd apps/web
+          npm version $VERSION --no-git-tag-version
+
+      - name: Create git tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add apps/web/package.json
+          git commit -m "chore(web): release v$VERSION"
+          git tag "web-v$VERSION"
+
+      - name: Push changes and tags
+        run: |
+          git push origin main
+          git push origin "web-v$VERSION"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: web-v${{ env.VERSION }}
+          files: apps/web/dist/**/*
+          body: |
+            ## Web App Release v${{ env.VERSION }}
+
+            See CHANGELOG.web.md for details.
+
+      # TODO: Add deployment step to self-hosted server
+      # - name: Deploy to production
+      #   run: |
+      #     # Example: rsync, ssh, docker, etc.
+      #     echo "Deploy web app to production"

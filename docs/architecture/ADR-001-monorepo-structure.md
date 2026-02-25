@@ -215,6 +215,34 @@ types depends on:
   (nothing)
 ```
 
+### Dependency Management Strategy
+
+**TypeScript & DevDependencies:**
+
+Internal packages (`packages/*`) **do not** declare TypeScript or shared devDependencies in their individual `package.json` files. These are managed at the **root level only**.
+
+✅ **Root-level devDependencies:**
+
+- `typescript` - Single version for entire monorepo
+- `eslint` + plugins - Shared linting configuration
+- `prettier` - Consistent code formatting
+- `turbo` - Build orchestration
+
+✅ **Package-level dependencies:**
+
+- Only **runtime dependencies** specific to that package
+- Examples: `zod` for validation, `date-fns` for utilities
+- Workspace dependencies: `@ocome/types`, `@ocome/api`, etc.
+
+**Why this approach?**
+
+- ✅ **pnpm workspace hoisting:** Shared dependencies automatically available
+- ✅ **Version consistency:** No conflicts between packages
+- ✅ **Simpler maintenance:** Update TypeScript once, affects all packages
+- ✅ **Faster installs:** Less duplication in node_modules
+
+**Exception:** Apps (`apps/*`) may declare their own TypeScript version if they need framework-specific versions (e.g., React Native compatibility).
+
 ## 8. Development Workflow
 
 ### Initial Setup

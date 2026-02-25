@@ -10,8 +10,5 @@
   },
   "dependencies": {
     "@ocome/types": "workspace:*"
-  },
-  "devDependencies": {
-    "typescript": "^5.3.0"
   }
 }

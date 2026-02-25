@@ -211,6 +211,15 @@ pnpm test                 # Run all tests
 # App-specific
 pnpm --filter web dev     # Run web dev server
 pnpm --filter mobile dev  # Run mobile dev server
+
+# To install dependencies only for the web app in this monorepo, use pnpm's --filter option:
+pnpm --filter web add <package-name>
+pnpm --filter web add -D <package-name>
+
+# To install dependencies only for the mobile app in this monorepo, use pnpm's --filter option:
+pnpm --filter mobile add <package-name>
+pnpm --filter mobile add -D <package-name>
+
 pnpm turbo run build      # Build with Turborepo caching
 ```
 

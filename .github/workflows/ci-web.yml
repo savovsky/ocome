@@ -27,7 +27,7 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo run type-check --filter=web
+      - run: pnpm turbo run tsc --filter=web
       - run: pnpm turbo run lint --filter=web
       - run: pnpm turbo run build --filter=web
 

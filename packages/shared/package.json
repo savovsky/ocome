@@ -1,12 +1,12 @@
 {
   "name": "@ocome/shared",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Shared utilities and hooks for web and mobile",
   "type": "module",
   "main": "./src/index.ts",
   "scripts": {
-    "type-check": "tsc --noEmit",
-    "lint": "eslint src --ext ts,tsx"
+    "tsc": "tsc --noEmit",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@ocome/types": "workspace:*"

@@ -27,7 +27,7 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo run type-check --filter=mobile
+      - run: pnpm turbo run tsc --filter=mobile
       - run: pnpm turbo run lint --filter=mobile
 
   # Placeholder for EAS build integration

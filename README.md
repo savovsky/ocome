@@ -61,8 +61,8 @@ pnpm turbo run build
 # Lint all code
 pnpm lint
 
-# Type check
-pnpm type-check
+# Type check - run TS compiler
+pnpm tsc
 
 # Run tests
 pnpm test
@@ -205,7 +205,7 @@ pnpm build                # Build all (web + mobile)
 pnpm build:web            # Build web only
 pnpm build:mobile         # Build mobile only
 pnpm lint                 # Lint all code
-pnpm type-check           # Type check everything
+pnpm tsc                  # Type check everything
 pnpm test                 # Run all tests
 
 # App-specific
@@ -227,7 +227,7 @@ pnpm turbo run build      # Build with Turborepo caching
 
 1. Create a branch: `git checkout -b feature/my-feature`
 2. Make changes (respect code splitting guidelines)
-3. Type check: `pnpm type-check`
+3. Type check: `pnpm tsc`
 4. Lint: `pnpm lint`
 5. Commit: `git commit -m "feat: my feature"`
 6. Push: `git push origin feature/my-feature`

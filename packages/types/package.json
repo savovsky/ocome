@@ -1,10 +1,10 @@
 {
   "name": "@ocome/types",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Shared TypeScript types and interfaces",
   "type": "module",
   "main": "./src/index.ts",
   "scripts": {
-    "type-check": "tsc --noEmit"
+    "tsc": "tsc --noEmit"
   }
 }

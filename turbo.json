@@ -21,7 +21,7 @@
       "inputs": ["src/**", "package.json"],
       "cache": true
     },
-    "type-check": {
+    "tsc": {
       "inputs": ["src/**", "tsconfig.json"],
       "cache": true
     }

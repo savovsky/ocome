@@ -25,5 +25,5 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo run type-check --filter="./packages/*"
+      - run: pnpm turbo run tsc --filter="./packages/*"
       - run: pnpm turbo run lint --filter="./packages/*"

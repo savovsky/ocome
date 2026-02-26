@@ -353,7 +353,7 @@ pnpm turbo run build     # Full Turborepo build with caching
 # Quality checks
 pnpm lint                # Lint all packages
 pnpm test                # Run all tests
-pnpm type-check          # Type check all packages
+pnpm tsc                 # Type check all packages
 
 # Releases
 # Go to GitHub Actions → Release - Web/Mobile → "Run workflow"

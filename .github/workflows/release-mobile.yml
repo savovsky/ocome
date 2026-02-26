@@ -30,7 +30,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Type check mobile app
-        run: pnpm turbo run type-check --filter=mobile
+        run: pnpm turbo run tsc --filter=mobile
 
       - name: Update version in mobile/package.json and app.json
         run: |

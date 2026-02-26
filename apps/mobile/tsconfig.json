@@ -1,24 +1,22 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": ["ES2020"],
-    "jsx": "react-native",
-    "strict": true,
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+    "jsx": "react-native"
   },
-    "include": [
-    "**/*.ts",
-    "**/*.tsx",
+  "include": [
+    "src",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ],
   "references": [
-    { "path": "../../packages/shared" },
-    { "path": "../../packages/types" },
-    { "path": "../../packages/api" }
+    {
+      "path": "../../packages/shared"
+    },
+    {
+      "path": "../../packages/types"
+    },
+    {
+      "path": "../../packages/api"
+    }
   ]
 }

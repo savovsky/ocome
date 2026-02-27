@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-native"
   },
@@ -9,14 +9,8 @@
     "expo-env.d.ts"
   ],
   "references": [
-    {
-      "path": "../../packages/shared"
-    },
-    {
-      "path": "../../packages/types"
-    },
-    {
-      "path": "../../packages/api"
-    }
+    { "path": "../../packages/shared" },
+    { "path": "../../packages/types" },
+    { "path": "../../packages/api" }
   ]
 }

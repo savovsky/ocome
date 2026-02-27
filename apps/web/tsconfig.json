@@ -1,11 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "jsx": "react-jsx"
-  },
-  "include": ["src"],
+  "files": [],
   "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" },
     { "path": "../../packages/shared" },
     { "path": "../../packages/types" },
     { "path": "../../packages/api" }

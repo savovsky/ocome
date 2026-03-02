@@ -1,11 +1,10 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import App from './App';
-import './index.css';
+import App from './components/App';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+const rootEl = document.getElementById('root');
+if (!(rootEl instanceof HTMLDivElement)) {
+  throw new Error('Missing or invalid React #root element');
+}
+
+createRoot(rootEl).render(<App />);

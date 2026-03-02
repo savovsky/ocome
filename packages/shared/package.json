@@ -7,8 +7,5 @@
   "scripts": {
     "tsc": "tsc --noEmit",
     "lint": "eslint ."
-  },
-  "dependencies": {
-    "@ocome/types": "workspace:*"
   }
 }

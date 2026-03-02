@@ -1,5 +1,7 @@
 import { Text, View } from 'react-native';
 
+import Users from '../components/Users';
+
 export default function Index() {
   return (
     <View
@@ -9,7 +11,8 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen!</Text>
+      <Text>Edit app/index.tsx to edit this screen!!!!!!</Text>
+      <Users />
     </View>
   );
 }

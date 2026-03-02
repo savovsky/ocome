@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import invalidationTags from './invalidationTags';
+
 // const _NEVER = /* @__PURE__ */ Symbol();
 // export type NEVER = typeof _NEVER;
 
@@ -51,25 +53,26 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // };
 
 const timeout = 15000; // milliseconds (15sec)
-const baseUrl = `${import.meta.env.VITE_APP_BASE_URL}`;
-const prepareHeaders = (headers: Headers, { getState }: any) => {
-  const { jwt } = getState().sliceAuthentication;
+const baseUrl = 'https://jsonplaceholder.typicode.com';
+// const prepareHeaders = (headers: Headers, { getState }: any) => {
+//   const { jwt } = getState().sliceAuthentication;
 
-  if (jwt) {
-    headers.set('Authorization', `Bearer ${jwt}`);
-  }
+//   if (jwt) {
+//     headers.set('Authorization', `Bearer ${jwt}`);
+//   }
 
-  headers.set('Access-Control-Allow-Origin', `${origin}`);
-  headers.set('Accept', 'application/json');
-  headers.set('X-Content-Type-Options', 'nosniff');
+//   headers.set('Access-Control-Allow-Origin', `${origin}`);
+//   headers.set('Accept', 'application/json');
+//   headers.set('X-Content-Type-Options', 'nosniff');
 
-  return headers;
-};
+//   return headers;
+// };
 
-const baseQuery = fetchBaseQuery({ baseUrl, timeout, prepareHeaders });
+const baseQuery = fetchBaseQuery({ baseUrl, timeout, prepareHeaders: undefined });
 
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery,
   endpoints: () => ({}),
+  tagTypes: [...Object.values(invalidationTags)],
 });

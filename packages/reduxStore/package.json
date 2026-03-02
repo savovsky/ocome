@@ -1,7 +1,7 @@
 {
-  "name": "@ocome/api",
+  "name": "@ocome/redux-store",
   "version": "0.0.1",
-  "description": "Shared API client for web and mobile",
+  "description": "Shared Redux store for web and mobile",
   "type": "module",
   "main": "./src/index.ts",
   "scripts": {

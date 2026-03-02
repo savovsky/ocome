@@ -11,6 +11,6 @@
   "references": [
     { "path": "../../packages/shared" },
     { "path": "../../packages/types" },
-    { "path": "../../packages/api" }
+    { "path": "../../packages/reduxStore" }
   ]
 }

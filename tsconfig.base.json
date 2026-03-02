@@ -18,8 +18,8 @@
       "@ocome/shared/*": ["packages/shared/src/*"],
       "@ocome/types": ["packages/types/src"],
       "@ocome/types/*": ["packages/types/src/*"],
-      "@ocome/api": ["packages/api/src"]
-      ,"@ocome/api/*": ["packages/api/src/*"]
+      "@ocome/redux-store": ["packages/reduxStore/src"],
+      "@ocome/redux-store/*": ["packages/reduxStore/src/*"]
     },
 
     /* Output */

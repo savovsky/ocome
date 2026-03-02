@@ -12,12 +12,9 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@ocome/api": "workspace:*",
+    "@ocome/redux-store": "workspace:*",
     "@ocome/shared": "workspace:*",
-    "@ocome/types": "workspace:*",
-    "@reduxjs/toolkit": "^2.11.2",
-    "react-redux": "^9.2.0",
-    "redux-persist": "^6.0.0"
+    "@ocome/types": "workspace:*"
   },
   "devDependencies": {
     "vite": "^7.3.1",

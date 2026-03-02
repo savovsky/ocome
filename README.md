@@ -9,23 +9,21 @@ This is a **monorepo** using `pnpm` workspaces and `Turborepo` for build orchest
 ```text
 ocome/
 ├── apps/
-│   ├── web/                   # Desktop SPA (React + Vite) → v1.0.0+
-│   └── mobile/                # Mobile app (React Native + Expo) → v1.0.0+
+│   ├── web/                   # Web SPA (React + Vite)
+│   └── mobile/                # Mobile app (React Native + Expo)
 ├── packages/                  # Shared libraries
 │   ├── shared/                # Cross-platform utilities
 │   ├── types/                 # Shared TypeScript types
-│   └── api/                   # Unified API client
+│   └── reduxStore/            # Shared Redux store for the web and the mobile
 ├── docs/architecture/         # Architecture decision records
 ├── .github/workflows/         # CI/CD pipelines
 └── [config files]
 ```
 
-## 🚀 Quick Start
-
 ### Prerequisites
 
-- **Node.js** 18+
-- **pnpm** 8+ (`npm install -g pnpm`)
+- **Node.js** 24+
+- **pnpm** 9.4.0 (`npm install -g pnpm`)
 
 ### Installation
 
@@ -72,7 +70,7 @@ pnpm test
 
 ### Web App (`apps/web/`)
 
-- **Framework:** React 18 + Vite
+- **Framework:** React + Vite
 - **Package:** `@ocome/web`
 - **Port:** 3000 (dev)
 - **Build output:** `dist/`
@@ -86,19 +84,19 @@ pnpm test
 
 ## 📚 Shared Packages
 
-| Package | Purpose | Exports |
-|---------|---------|---------|
+| Package | Purpose |
+|---------|---------|
 
-| `@ocome/types` | TypeScript interfaces & types | API responses, User, etc. |
-| `@ocome/shared` | Utilities & helpers | `formatDate()`, `debounce()`, etc. |
-| `@ocome/api` | API client | `ApiClient` class |
+| `@ocome/types` | TypeScript interfaces & types |
+| `@ocome/shared` | Utilities & helpers |
+| `@ocome/redux-store` | Redux store with RTK & RTK-Query |
 
 **Usage in apps:**
 
 ```typescript
-import { formatDate } from '@ocome/shared'
-import { ApiClient } from '@ocome/api'
-import type { User } from '@ocome/types'
+import { ... } from '@ocome/shared'
+import { ... } from '@ocome/redux-store'
+import type { ... } from '@ocome/types'
 ```
 
 ## 🔄 Release Process
@@ -219,6 +217,12 @@ pnpm --filter web add -D <package-name>
 # To install dependencies only for the mobile app in this monorepo, use pnpm's --filter option:
 pnpm --filter mobile add <package-name>
 pnpm --filter mobile add -D <package-name>
+
+# Good pattern in this monorepo:
+# Native/Expo dep:
+pnpm --filter @ocome/mobile exec expo install <package>
+# JS-only dep:
+pnpm --filter @ocome/mobile add <package>
 
 pnpm turbo run build      # Build with Turborepo caching
 ```

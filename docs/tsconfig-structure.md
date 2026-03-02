@@ -189,9 +189,9 @@ Different JSX transforms are needed:
 The `paths` in `tsconfig.base.json` enable clean imports:
 
 ```typescript
-import { formatDate } from '@ocome/shared';
-import type { User } from '@ocome/types';
-import { apiClient } from '@ocome/api';
+import { ... } from '@ocome/shared';
+import type { ... } from '@ocome/types';
+import { ... } from '@ocome/redux-store';
 ```
 
 ## Troubleshooting

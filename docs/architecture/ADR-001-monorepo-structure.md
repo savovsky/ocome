@@ -232,7 +232,7 @@ Internal packages (`packages/*`) **do not** declare TypeScript or shared devDepe
 
 - Only **runtime dependencies** specific to that package
 - Examples: `zod` for validation, `date-fns` for utilities
-- Workspace dependencies: `@ocome/types`, `@ocome/api`, etc.
+- Workspace dependencies: `@ocome/types`, `@ocome/shared`, etc.
 
 **Why this approach?**
 

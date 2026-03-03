@@ -24,7 +24,6 @@ export const apiUsers = baseApi.injectEndpoints({
           await queryFulfilled;
         } catch (error) {
           console.error('Error fetching users:', error);
-          // handleResponseError({ error, requestName: 'GET_users', displayNotification: false })
         }
       },
 

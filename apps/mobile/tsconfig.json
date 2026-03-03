@@ -9,8 +9,6 @@
     "expo-env.d.ts"
   ],
   "references": [
-    { "path": "../../packages/shared" },
-    { "path": "../../packages/types" },
-    { "path": "../../packages/reduxStore" }
+    { "path": "../../packages/shared" }
   ]
 }

@@ -3,8 +3,6 @@
   "references": [
     { "path": "./apps/mobile" },
     { "path": "./apps/web" },
-    { "path": "./packages/types" },
-    { "path": "./packages/shared" },
-    { "path": "./packages/reduxStore" }
+    { "path": "./packages/shared" }
   ]
 }

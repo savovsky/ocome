@@ -78,15 +78,9 @@ importers:
       '@expo/vector-icons':
         specifier: ^15.0.3
         version: 15.1.1(expo-font@14.0.11(expo@54.0.33(@babel/core@7.29.0)(@expo/metro-runtime@6.1.2)(expo-router@6.0.23)(react-native@0.81.5(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.0))(react@19.1.0))(react-native@0.81.5(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.0))(react@19.1.0))(react-native@0.81.5(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.0))(react@19.1.0)
-      '@ocome/redux-store':
-        specifier: workspace:*
-        version: link:../../packages/reduxStore
       '@ocome/shared':
         specifier: workspace:*
         version: link:../../packages/shared
-      '@ocome/types':
-        specifier: workspace:*
-        version: link:../../packages/types
       '@react-native-async-storage/async-storage':
         specifier: ^2.2.0
         version: 2.2.0(react-native@0.81.5(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.0))
@@ -162,15 +156,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@ocome/redux-store':
-        specifier: workspace:*
-        version: link:../../packages/reduxStore
       '@ocome/shared':
         specifier: workspace:*
         version: link:../../packages/shared
-      '@ocome/types':
-        specifier: workspace:*
-        version: link:../../packages/types
     devDependencies:
       vite:
         specifier: ^7.3.1
@@ -182,19 +170,17 @@ importers:
         specifier: ~6.1.1
         version: 6.1.1(typescript@5.9.3)(vite@7.3.1(@types/node@24.11.0)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))
 
-  packages/reduxStore:
-    dependencies:
-      '@ocome/types':
-        specifier: workspace:*
-        version: link:../types
-
   packages/shared:
     dependencies:
-      '@ocome/types':
-        specifier: workspace:*
-        version: link:../types
-
-  packages/types: {}
+      '@reduxjs/toolkit':
+        specifier: ^2.11.2
+        version: 2.11.2(react-redux@9.2.0(@types/react@19.2.14)(react@19.1.0)(redux@5.0.1))(react@19.1.0)
+      react-redux:
+        specifier: ^9.2.0
+        version: 9.2.0(@types/react@19.2.14)(react@19.1.0)(redux@5.0.1)
+      redux-persist:
+        specifier: ^6.0.0
+        version: 6.0.0(react@19.1.0)(redux@5.0.1)
 
 packages:
 

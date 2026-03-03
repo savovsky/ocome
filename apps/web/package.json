@@ -12,9 +12,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@ocome/redux-store": "workspace:*",
-    "@ocome/shared": "workspace:*",
-    "@ocome/types": "workspace:*"
+    "@ocome/shared": "workspace:*"
   },
   "devDependencies": {
     "vite": "^7.3.1",

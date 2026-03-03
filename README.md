@@ -12,9 +12,7 @@ ocome/
 │   ├── web/                   # Web SPA (React + Vite)
 │   └── mobile/                # Mobile app (React Native + Expo)
 ├── packages/                  # Shared libraries
-│   ├── shared/                # Cross-platform utilities
-│   ├── types/                 # Shared TypeScript types
-│   └── reduxStore/            # Shared Redux store for the web and the mobile
+│   └── shared/                # Cross-platform state, types, utilities, helpers
 ├── docs/architecture/         # Architecture decision records
 ├── .github/workflows/         # CI/CD pipelines
 └── [config files]
@@ -86,17 +84,14 @@ pnpm test
 
 | Package | Purpose |
 |---------|---------|
-
-| `@ocome/types` | TypeScript interfaces & types |
-| `@ocome/shared` | Utilities & helpers |
-| `@ocome/redux-store` | Redux store with RTK & RTK-Query |
+| `@ocome/shared` | Cross-platform state, types, interfaces, utilities, and helpers |
 
 **Usage in apps:**
 
 ```typescript
-import { ... } from '@ocome/shared'
-import { ... } from '@ocome/redux-store'
-import type { ... } from '@ocome/types'
+import { ... } from '@ocome/shared/keys'
+import { ... } from '@ocome/shared/redux-store'
+import type { ... } from '@ocome/shared/types'
 ```
 
 ## 🔄 Release Process
@@ -151,22 +146,20 @@ See [Architecture Decision Record](docs/architecture/ADR-001-monorepo-structure.
 ### Adding new code
 
 **Shared utility?** → `packages/shared/src/`  
-**Shared type?** → `packages/types/src/`  
-**API logic?** → `packages/api/src/`  
+**Shared type?** → `packages/shared/src/types/`  
+**Shared state/API logic?** → `packages/shared/src/state/`  
 **Web feature?** → `apps/web/src/`  
 **Mobile feature?** → `apps/mobile/src/`
 
 ### Dependency rules
 
 ```text
-✅ web/web → shared, types, api, npm:*
-✅ mobile → shared, types, api, npm:*
-✅ shared → types, npm:*
-✅ api → types, npm:*
-✅ types → npm:* (no local deps)
+✅ web → shared, npm:*
+✅ mobile → shared, npm:*
+✅ shared → npm:* (app-agnostic only)
 
 ❌ Don't import between web/mobile
-❌ Don't import web/mobile in shared packages
+❌ Don't import web/mobile in shared
 ```
 
 ### Turborepo caching
@@ -246,4 +239,4 @@ pnpm turbo run build      # Build with Turborepo caching
 
 ---
 
-**Last Updated:** February 25, 2026
+**Last Updated:** March 3, 2026

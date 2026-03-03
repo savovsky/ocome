@@ -1,7 +1,7 @@
 import { type FC, StrictMode } from 'react';
 import { Provider } from 'react-redux';
 
-import { createStore } from '@ocome/redux-store';
+import { createStore } from '@ocome/shared/redux-store';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import storage from 'redux-persist/lib/storage';

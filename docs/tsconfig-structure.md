@@ -20,12 +20,8 @@ ocome/
 │       ├── tsconfig.app.json  # Vite app config (standalone with react-jsx)
 │       └── tsconfig.node.json # Vite config tooling (standalone for Node.js)
 └── packages/
-    ├── api/
-    │   └── tsconfig.json      # Extends base
-    ├── shared/
-    │   └── tsconfig.json      # Extends base
-    └── types/
-        └── tsconfig.json      # Extends base
+  └── shared/
+    └── tsconfig.json      # Extends base
 ```
 
 ## Configuration Files Explained
@@ -46,9 +42,7 @@ ocome/
 **Who extends it:**
 
 - `apps/mobile/tsconfig.json`
-- `packages/api/tsconfig.json`
 - `packages/shared/tsconfig.json`
-- `packages/types/tsconfig.json`
 
 ### `tsconfig.json` (Root)
 
@@ -72,7 +66,7 @@ Solution configs should not inherit compiler options that affect emit behavior, 
 
 - `jsx: "react-native"` - React Native JSX transform
 - `include: ["src", ".expo/types/**/*.ts", "expo-env.d.ts"]` - Source files
-- `references` - Links to shared packages (types, shared, api)
+- `references` - Links to shared package
 
 ### `apps/web/tsconfig.json`
 
@@ -116,7 +110,7 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 - `noEmit: true` - Config files aren't emitted
 - `include: ["vite.config.ts"]` - Build tooling only
 
-### `packages/{api,shared,types}/tsconfig.json`
+### `packages/shared/tsconfig.json`
 
 **Purpose:** Shared package configurations.
 
@@ -127,7 +121,6 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 - `outDir: "./dist"` - Compiled output directory
 - `rootDir: "./src"` - Source directory
 - `include: ["src"]` - Package source files
-- `references` - Inter-package dependencies (e.g., shared → types)
 
 ## How Project References Work
 
@@ -141,10 +134,7 @@ Project references enable TypeScript to:
 
 ```text
 apps/mobile/tsconfig.json
-  ├─ references → packages/shared
-  ├─ references → packages/types
-  └─ references → packages/api
-        └─ references → packages/types
+  └─ references → packages/shared
 ```
 
 ## Common Commands
@@ -189,9 +179,9 @@ Different JSX transforms are needed:
 The `paths` in `tsconfig.base.json` enable clean imports:
 
 ```typescript
-import { ... } from '@ocome/shared';
-import type { ... } from '@ocome/types';
-import { ... } from '@ocome/redux-store';
+import { ... } from '@ocome/shared/keys';
+import type { ... } from '@ocome/shared/types';
+import { ... } from '@ocome/shared/redux-store';
 ```
 
 ## Troubleshooting

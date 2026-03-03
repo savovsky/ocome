@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 
-import { createStore } from '@ocome/redux-store';
+import { createStore } from '@ocome/shared/redux-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Stack } from 'expo-router';
 

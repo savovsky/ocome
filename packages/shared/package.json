@@ -3,13 +3,22 @@
   "version": "0.0.1",
   "description": "Shared utilities and hooks for web and mobile",
   "type": "module",
-  "main": "./src/index.ts",
+  "exports": {
+    "./redux-store": "./src/redux-store/index.ts",
+    "./redux-store/*": "./src/redux-store/*",
+    "./types": "./src/types/index.ts",
+    "./types/*": "./src/types/*",
+    "./keys": "./src/keys/index.ts",
+    "./keys/*": "./src/keys/*"
+  },
   "scripts": {
     "build": "tsc -b",
     "tsc": "tsc --noEmit",
     "lint": "eslint ."
   },
   "dependencies": {
-    "@ocome/types": "workspace:*"
+    "@reduxjs/toolkit": "^2.11.2",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0"
   }
 }

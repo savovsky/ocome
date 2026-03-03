@@ -11,7 +11,7 @@ Ocome project requires parallel development of two separate applications:
 - **Web App:** Desktop SPA using React + Vite
 - **Mobile App:** Mobile application using React Native + Expo
 
-Both applications share common api, business logic, types, and utilities. The challenge is managing code sharing while maintaining:
+Both applications share common business logic, types, interfaces, helpers, and state infrastructure. The challenge is managing code sharing while maintaining:
 
 - Independent version control for each application
 - Separate release cycles (web and mobile can be released at different times)
@@ -63,9 +63,7 @@ ocome/
 │   ├── web/                    # React + Vite desktop app (independent version)
 │   └── mobile/                 # React Native + Expo mobile app (independent version)
 ├── packages/
-│   ├── shared/                 # Cross-platform utilities & hooks
-│   ├── types/                  # Shared TypeScript interfaces
-│   └── api/                    # Unified API client (fetch-based)
+│   └── shared/                 # Cross-platform state, types, helpers, utilities
 ├── .github/
 │   └── workflows/              # CI/CD pipelines
 ├── docs/
@@ -87,9 +85,7 @@ ocome/
 
 #### **Unified `packages/` for shared code**
 
-- `shared/` → Utilities, helpers, validation logic (platform-agnostic)
-- `types/` → TypeScript interfaces and domain models
-- `api/` → Unified API client using standard Fetch API
+- `shared/` → Utilities, helpers, validation logic, shared types, and cross-platform state/api logic
 
 #### **NO shared UI components**
 
@@ -180,10 +176,11 @@ shared:     internal only (not versioned externally)
 
 ✅ **Shareable:**
 
-- Type definitions (`packages/types`)
+- Type definitions (`packages/shared/src/types`)
 - Validation logic
 - Utility functions
-- API client interface
+- API client and RTK Query endpoints
+- Shared Redux slices and store factory
 - Constants and configuration
 
 ❌ **NOT Shared:**
@@ -197,22 +194,9 @@ shared:     internal only (not versioned externally)
 ```json
 web depends on:
   └─ shared
-  └─ types
-  └─ api
 
 mobile depends on:
   └─ shared
-  └─ types
-  └─ api
-
-shared depends on:
-  └─ types
-
-api depends on:
-  └─ types
-
-types depends on:
-  (nothing)
 ```
 
 ### Dependency Management Strategy
@@ -232,7 +216,7 @@ Internal packages (`packages/*`) **do not** declare TypeScript or shared devDepe
 
 - Only **runtime dependencies** specific to that package
 - Examples: `zod` for validation, `date-fns` for utilities
-- Workspace dependencies: `@ocome/types`, `@ocome/shared`, etc.
+- Workspace dependencies: `@ocome/shared`
 
 **Why this approach?**
 
@@ -271,10 +255,11 @@ pnpm build:mobile # Build mobile only
 ### ✅ Benefits
 
 - **Code reuse:** Shared types, utilities, API client
+- **Code reuse:** Shared types, utilities, API client, and state/store logic
 - **Atomic commits:** Related changes committed together
 - **Single build system:** Turborepo handles complexity
 - **Clear deployment model:** Each app independently releasable
-- **Scalability:** Easy to add more packages or apps
+- **Scalability:** Easy to add more apps or split packages later if needed
 - **Type safety:** Unified TypeScript configuration
 
 ### ⚠️ Trade-offs
@@ -323,7 +308,7 @@ pnpm build:mobile # Build mobile only
 ## 13. Governance
 
 **Architecture Owner:** [TBD]  
-**Last Updated:** February 25, 2026  
+**Last Updated:** March 3, 2026  
 **Review Cycle:** Annually or when significant changes occur
 
 ### How to Propose Changes

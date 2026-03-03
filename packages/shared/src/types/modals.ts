@@ -1,4 +1,4 @@
-import { keysModals } from '@ocome/shared';
+import { keysModals } from '../keys/keysModals';
 
 type ModalKey = keyof typeof keysModals.modalsKeys;
 type ModalLayerKey = keyof typeof keysModals.modalsLayersKeys;

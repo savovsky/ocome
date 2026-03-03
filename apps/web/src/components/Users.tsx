@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { apiUsers } from '@ocome/redux-store';
+import { apiUsers } from '@ocome/shared/redux-store';
 
 const { useGET_usersQuery } = apiUsers;
 

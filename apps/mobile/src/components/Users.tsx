@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Text, View } from 'react-native';
 
-import { apiUsers } from '@ocome/redux-store';
+import { apiUsers } from '@ocome/shared/redux-store';
 
 const { useGET_usersQuery } = apiUsers;
 

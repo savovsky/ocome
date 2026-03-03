@@ -14,7 +14,7 @@ export default defineConfig([
   // 'react/' ('eslint-plugin-react') AND
   // 'react-hooks/' ('eslint-plugin-react-hooks')
   ...expolint,
-  { ignores: ['dist'] },
+  { ignores: ['dist', '**/dist/**'] },
   {
     files: ['**/*.{js,ts,tsx}'],
     languageOptions: {
@@ -102,6 +102,69 @@ export default defineConfig([
         },
       ],
       'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: '@ocome/redux-store',
+              message: 'Use @ocome/shared/redux-store instead.',
+            },
+            {
+              name: '@ocome/types',
+              message: 'Types are now part of @ocome/shared.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['apps/web/**/*.{js,ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@ocome/mobile/*', 'apps/mobile/*'],
+              message: 'Web app must not import from mobile app.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['apps/mobile/**/*.{js,ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@ocome/web/*', 'apps/web/*'],
+              message: 'Mobile app must not import from web app.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['packages/shared/**/*.{js,ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['apps/*', '@ocome/mobile*', '@ocome/web*'],
+              message: 'Shared package must remain app-agnostic.',
+            },
+          ],
+        },
+      ],
     },
   },
 ]);

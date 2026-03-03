@@ -1,6 +1,7 @@
-import { keysModals } from '@ocome/shared';
-import type { IModalLayer, IModalOpen } from '@ocome/types';
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+import { keysModals } from '../../keys';
+import { type IModalLayer, type IModalOpen } from '../../types';
 
 const { LAYER_1, LAYER_2 } = keysModals.modalsLayersKeys;
 
@@ -56,5 +57,4 @@ export const sliceModals = createSlice({
   },
 });
 
-// Actions
 export const { openModal, closeModal, resetModalsSlice } = sliceModals.actions;

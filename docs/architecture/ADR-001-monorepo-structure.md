@@ -62,8 +62,7 @@ ocome/
 ├── apps/
 │   ├── web/                    # React + Vite desktop app (independent version)
 │   └── mobile/                 # React Native + Expo mobile app (independent version)
-├── packages/
-│   └── shared/                 # Cross-platform state, types, helpers, utilities
+├── shared/                     # Cross-platform state, types, helpers, utilities
 ├── .github/
 │   └── workflows/              # CI/CD pipelines
 ├── docs/
@@ -83,9 +82,11 @@ ocome/
 - Clear separation between deployable applications and libraries
 - Easy to identify what gets deployed vs. what's internal
 
-#### **Unified `packages/` for shared code**
+#### **Shared code at root level**
 
 - `shared/` → Utilities, helpers, validation logic, shared types, and cross-platform state/api logic
+- Located at root for direct access without additional nesting
+- Simplifies the monorepo structure for a single shared package
 
 #### **NO shared UI components**
 
@@ -176,7 +177,7 @@ shared:     internal only (not versioned externally)
 
 ✅ **Shareable:**
 
-- Type definitions (`packages/shared/src/types`)
+- Type definitions (`shared/src/types`)
 - Validation logic
 - Utility functions
 - API client and RTK Query endpoints
@@ -203,7 +204,7 @@ mobile depends on:
 
 **TypeScript & DevDependencies:**
 
-Internal packages (`packages/*`) **do not** declare TypeScript or shared devDependencies in their individual `package.json` files. These are managed at the **root level only**.
+The shared package **does not** declare TypeScript or shared devDependencies in its individual `package.json` file. These are managed at the **root level only**.
 
 ✅ **Root-level devDependencies:**
 

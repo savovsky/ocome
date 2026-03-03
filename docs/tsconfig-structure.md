@@ -42,7 +42,7 @@ ocome/
 **Who extends it:**
 
 - `apps/mobile/tsconfig.json`
-- `packages/shared/tsconfig.json`
+- `shared/tsconfig.json`
 
 ### `tsconfig.json` (Root)
 
@@ -110,7 +110,7 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 - `noEmit: true` - Config files aren't emitted
 - `include: ["vite.config.ts"]` - Build tooling only
 
-### `packages/shared/tsconfig.json`
+### `shared/tsconfig.json`
 
 **Purpose:** Shared package configurations.
 
@@ -134,7 +134,7 @@ Project references enable TypeScript to:
 
 ```text
 apps/mobile/tsconfig.json
-  └─ references → packages/shared
+  └─ references → shared
 ```
 
 ## Common Commands

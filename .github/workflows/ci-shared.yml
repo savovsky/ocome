@@ -4,12 +4,12 @@ on:
   push:
     branches: [main, develop]
     paths:
-      - "packages/**"
+      - "shared/**"
       - ".github/workflows/ci-shared.yml"
   pull_request:
     branches: [main, develop]
     paths:
-      - "packages/**"
+      - "shared/**"
 
 jobs:
   test:
@@ -25,5 +25,5 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo run tsc --filter="./packages/*"
-      - run: pnpm turbo run lint --filter="./packages/*"
+      - run: pnpm turbo run tsc --filter="./shared"
+      - run: pnpm turbo run lint --filter="./shared"

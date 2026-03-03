@@ -14,10 +14,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@ocome/shared": ["packages/shared/src"],
-      "@ocome/shared/*": ["packages/shared/src/*"],
-      "@ocome/shared/redux-store": ["packages/shared/src/redux-store"],
-      "@ocome/shared/redux-store/*": ["packages/shared/src/redux-store/*"]
+      "@ocome/shared": ["shared/src"],
+      "@ocome/shared/*": ["shared/src/*"],
+      "@ocome/shared/redux-store": ["shared/src/redux-store"],
+      "@ocome/shared/redux-store/*": ["shared/src/redux-store/*"]
     },
 
     /* Output */

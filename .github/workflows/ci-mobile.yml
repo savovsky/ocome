@@ -5,13 +5,13 @@ on:
     branches: [main, develop]
     paths:
       - "apps/mobile/**"
-      - "packages/**"
+      - "shared/**"
       - ".github/workflows/ci-mobile.yml"
   pull_request:
     branches: [main, develop]
     paths:
       - "apps/mobile/**"
-      - "packages/**"
+      - "shared/**"
 
 jobs:
   test:

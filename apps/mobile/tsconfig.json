@@ -9,6 +9,6 @@
     "expo-env.d.ts"
   ],
   "references": [
-    { "path": "../../packages/shared" }
+    { "path": "../../shared" }
   ]
 }

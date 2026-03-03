@@ -145,9 +145,9 @@ See [Architecture Decision Record](docs/architecture/ADR-001-monorepo-structure.
 
 ### Adding new code
 
-**Shared utility?** → `packages/shared/src/`  
-**Shared type?** → `packages/shared/src/types/`  
-**Shared state/API logic?** → `packages/shared/src/state/`  
+**Shared utility?** → `shared/src/`  
+**Shared type?** → `shared/src/types/`  
+**Shared state/API logic?** → `shared/src/state/`  
 **Web feature?** → `apps/web/src/`  
 **Mobile feature?** → `apps/mobile/src/`
 

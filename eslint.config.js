@@ -35,7 +35,7 @@ export default defineConfig([
             './tsconfig.json',
             './apps/*/tsconfig.json',
             './apps/*/tsconfig.*.json',
-            './packages/*/tsconfig.json',
+            './shared/tsconfig.json',
           ],
         },
       },
@@ -151,7 +151,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['packages/shared/**/*.{js,ts,tsx}'],
+    files: ['shared/**/*.{js,ts,tsx}'],
     rules: {
       'no-restricted-imports': [
         'error',

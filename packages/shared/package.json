@@ -9,7 +9,7 @@
     "tsc": "tsc --noEmit",
     "lint": "eslint ."
   },
-    "dependencies": {
+  "dependencies": {
     "@ocome/types": "workspace:*"
   }
 }

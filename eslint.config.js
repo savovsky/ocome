@@ -29,17 +29,16 @@ export default defineConfig([
       react: {
         version: 'detect',
       },
-      // pnpm add -D eslint-import-resolver-typescript !?!??!?!
-      // 'import/resolver': {
-      //   typescript: {
-      //     project: [
-      //       './tsconfig.json',
-      //       './apps/*/tsconfig.json',
-      //       './apps/*/tsconfig.*.json',
-      //       './packages/*/tsconfig.json',
-      //     ],
-      //   },
-      // },
+      'import/resolver': {
+        typescript: {
+          project: [
+            './tsconfig.json',
+            './apps/*/tsconfig.json',
+            './apps/*/tsconfig.*.json',
+            './packages/*/tsconfig.json',
+          ],
+        },
+      },
     },
     rules: {
       'react-hooks/rules-of-hooks': 'error',

@@ -82,8 +82,8 @@ pnpm test
 
 ## 📚 Shared Packages
 
-| Package | Purpose |
-|---------|---------|
+| Package         | Purpose                                                         |
+|-----------------|-----------------------------------------------------------------|
 | `@ocome/shared` | Cross-platform state, types, interfaces, utilities, and helpers |
 
 **Usage in apps:**

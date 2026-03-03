@@ -1,7 +1,7 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { keysModals } from '../../keys';
-import { type IModalLayer, type IModalOpen } from '../../types';
+import { keysModals } from '../../keys/keysModals';
+import { type IModalLayer, type IModalOpen } from '../../types/modals';
 
 const { LAYER_1, LAYER_2 } = keysModals.modalsLayersKeys;
 

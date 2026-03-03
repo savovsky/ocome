@@ -6,9 +6,7 @@
   "exports": {
     "./redux-store": "./src/redux-store/index.ts",
     "./redux-store/*": "./src/redux-store/*",
-    "./types": "./src/types/index.ts",
     "./types/*": "./src/types/*",
-    "./keys": "./src/keys/index.ts",
     "./keys/*": "./src/keys/*"
   },
   "scripts": {

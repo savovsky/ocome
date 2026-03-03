@@ -8,6 +8,7 @@
     "@ocome/shared": "workspace:*"
   },
   "scripts": {
+    "build": "tsc -b",
     "tsc": "tsc --noEmit"
   }
 }

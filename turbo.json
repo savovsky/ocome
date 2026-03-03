@@ -22,6 +22,7 @@
       "cache": true
     },
     "tsc": {
+      "dependsOn": ["^build"],
       "inputs": ["src/**", "tsconfig.json"],
       "cache": true
     }

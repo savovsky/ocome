@@ -188,7 +188,11 @@ importers:
         specifier: workspace:*
         version: link:../types
 
-  packages/shared: {}
+  packages/shared:
+    dependencies:
+      '@ocome/types':
+        specifier: workspace:*
+        version: link:../types
 
   packages/types:
     dependencies:

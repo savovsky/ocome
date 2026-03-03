@@ -4,9 +4,6 @@
   "description": "Shared TypeScript types and interfaces",
   "type": "module",
   "main": "./src/index.ts",
-  "dependencies": {
-    "@ocome/shared": "workspace:*"
-  },
   "scripts": {
     "build": "tsc -b",
     "tsc": "tsc --noEmit"

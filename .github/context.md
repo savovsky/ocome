@@ -131,6 +131,15 @@ Start with these when you need specific information:
 | [instructions/code-quality.instructions.md](instructions/code-quality.instructions.md) | ESLint rules, Prettier formatting, type checking |
 | [instructions/troubleshooting.instructions.md](instructions/troubleshooting.instructions.md) | Common issues, installation problems, debugging |
 
+## Skills Reference
+
+Use these reusable skills for recurring implementation patterns:
+
+| Skill | Purpose |
+| ----- | ------- |
+| [skills/add-new-project-dependency/SKILL.md](skills/add-new-project-dependency/SKILL.md) | Decides exact dependency ownership (root/web/mobile/shared/peerDependencies) and validation workflow |
+| [skills/create-update-md-file/SKILL.md](skills/create-update-md-file/SKILL.md) | Ensures markdown files follow markdownlint formatting and structure rules |
+
 ---
 
 ## Quick Start Checklist

@@ -230,7 +230,14 @@ pnpm turbo run build      # Build with Turborepo caching
 6. Push: `git push origin feature/my-feature`
 7. Create PR to `main` or `develop`
 
-## 📖 Further Reading
+## � Skills & Patterns
+
+For recurring implementation tasks, refer to these guides:
+
+- **[Adding Project Dependencies](.github/skills/add-new-project-dependency/SKILL.md)** — Decide exact dependency ownership (root/web/mobile/shared) and validation workflow
+- **[Creating/Updating Markdown Files](.github/skills/create-update-md-file/SKILL.md)** — Follow markdownlint rules for consistent documentation
+
+## �📖 Further Reading
 
 - [pnpm Workspaces](https://pnpm.io/workspaces)
 - [Turborepo Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)

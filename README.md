@@ -2,6 +2,13 @@
 
 A monorepo containing desktop (React + Vite) and mobile (React Native + Expo) applications for communities management.
 
+## AI Guidance Quick Rule
+
+- Use **instructions** for always-on guardrails (architecture, quality, workflow).
+- Use **skills** for task-specific playbooks (CI/CD, Redux changes, troubleshooting, dependency placement, markdown edits).
+- Start from [.github/context.md](.github/context.md) to find the right instruction or skill quickly.
+- If a task is infrequent or procedural, prefer the matching skill over expanding instruction files.
+
 ## 📦 Project Structure
 
 This is a **monorepo** using `pnpm` workspaces and `Turborepo` for build orchestration.
@@ -230,14 +237,17 @@ pnpm turbo run build      # Build with Turborepo caching
 6. Push: `git push origin feature/my-feature`
 7. Create PR to `main` or `develop`
 
-## � Skills & Patterns
+## Skills & Patterns
 
 For recurring implementation tasks, refer to these guides:
 
 - **[Adding Project Dependencies](.github/skills/add-new-project-dependency/SKILL.md)** — Decide exact dependency ownership (root/web/mobile/shared) and validation workflow
 - **[Creating/Updating Markdown Files](.github/skills/create-update-md-file/SKILL.md)** — Follow markdownlint rules for consistent documentation
+- **[CI/CD Workflows](.github/skills/ci-cd-workflows/SKILL.md)** — Apply and debug GitHub Actions workflows with package-scoped checks
+- **[Redux State Management](.github/skills/redux-state-management/SKILL.md)** — Implement slices, RTK Query endpoints, and shared state updates safely
+- **[Troubleshooting](.github/skills/troubleshooting/SKILL.md)** — Use a least-destructive debugging workflow for build/dev/type/lint issues
 
-## �📖 Further Reading
+## Further Reading
 
 - [pnpm Workspaces](https://pnpm.io/workspaces)
 - [Turborepo Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
@@ -246,4 +256,4 @@ For recurring implementation tasks, refer to these guides:
 
 ---
 
-**Last Updated:** March 3, 2026
+**Last Updated:** March 4, 2026

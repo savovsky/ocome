@@ -3,13 +3,8 @@ name: CI - Shared Packages
 on:
   push:
     branches: [main, develop]
-    paths:
-      - "shared/**"
-      - ".github/workflows/ci-shared.yml"
   pull_request:
     branches: [main, develop]
-    paths:
-      - "shared/**"
 
 jobs:
   test:

@@ -3,15 +3,8 @@ name: CI - Web
 on:
   push:
     branches: [main, develop]
-    paths:
-      - "apps/web/**"
-      - "shared/**"
-      - ".github/workflows/ci-web.yml"
   pull_request:
     branches: [main, develop]
-    paths:
-      - "apps/web/**"
-      - "shared/**"
 
 jobs:
   test:

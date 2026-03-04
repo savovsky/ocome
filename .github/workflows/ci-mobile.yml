@@ -3,15 +3,8 @@ name: CI - Mobile
 on:
   push:
     branches: [main, develop]
-    paths:
-      - "apps/mobile/**"
-      - "shared/**"
-      - ".github/workflows/ci-mobile.yml"
   pull_request:
     branches: [main, develop]
-    paths:
-      - "apps/mobile/**"
-      - "shared/**"
 
 jobs:
   test:

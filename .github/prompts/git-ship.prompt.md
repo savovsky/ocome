@@ -15,7 +15,9 @@ Use this prompt to run a safe, repeatable Git workflow with as few approval step
    - `git add -A`
 3. Propose a conventional commit message from the diff summary.
 4. Commit and push using a single terminal command when possible:
-   - `git add -A; git commit -m "<message>"; git push`
+   - `git add -A; git commit -m "<message>"; git push; git status --short --branch`
+5. Run a quick status check to confirm the working tree is clean:
+   - `git status --short --branch`
 
 ## Safety Rules
 
@@ -44,4 +46,5 @@ Keep output concise:
 1. Status summary
 2. Commit message used
 3. Command executed
-4. Result (success/failure)
+4. Push result (success/failure)
+5. Final status check (clean/not clean)

@@ -17,11 +17,11 @@ ocome/
 │   │   └── tsconfig.json      # Expo app config (extends base, adds react-native JSX)
 │   └── web/
 │       ├── tsconfig.json      # Web solution config (references only)
-│       ├── tsconfig.app.json  # Vite app config (standalone with react-jsx)
-│       └── tsconfig.node.json # Vite config tooling (standalone for Node.js)
-└── packages/
-  └── shared/
-    └── tsconfig.json      # Extends base
+│       ├── tsconfig.web-base.json # Shared web/Vite compiler options
+│       ├── tsconfig.app.json  # Vite app config (extends web base, react-jsx)
+│       └── tsconfig.node.json # Vite tooling config (extends web base, Node.js)
+└── shared/
+    └── tsconfig.json          # Shared library config (extends base)
 ```
 
 ## Configuration Files Explained
@@ -84,7 +84,7 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 
 **Purpose:** Vite application code configuration (what runs in the browser).
 
-**Does NOT extend base** - Uses standalone Vite-optimized settings.
+**Extends:** `./tsconfig.web-base.json`
 
 **Key Settings:**
 
@@ -99,7 +99,7 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 
 **Purpose:** Vite build tooling configuration (e.g., `vite.config.ts`).
 
-**Does NOT extend base** - Uses standalone Node.js settings.
+**Extends:** `./tsconfig.web-base.json`
 
 **Key Settings:**
 
@@ -121,6 +121,14 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 - `outDir: "./dist"` - Compiled output directory
 - `rootDir: "./src"` - Source directory
 - `include: ["src"]` - Package source files
+
+### Why `shared` does not use web app config
+
+`shared` is a cross-platform library consumed by both web and mobile.
+
+- It should inherit platform-neutral defaults from `tsconfig.base.json`.
+- It should not inherit Vite app-only settings from `apps/web/tsconfig.app.json` (for example `types: ["vite/client"]`, browser-focused libs, and app-local `baseUrl`).
+- Keeping `shared` independent from web app config prevents browser-specific assumptions from leaking into mobile consumers.
 
 ## How Project References Work
 
@@ -205,6 +213,6 @@ import { ... } from '@ocome/shared/redux-store';
 ## Maintenance Tips
 
 1. **Don't extend base in solution configs** - Keep `tsconfig.json` and `apps/web/tsconfig.json` as pure reference coordinators
-2. **Keep web app configs standalone** - Vite has specific requirements that conflict with base settings
+2. **Keep web configs isolated from root base** - Use `apps/web/tsconfig.web-base.json` + leaf configs for Vite-specific requirements
 3. **Use project references consistently** - If a package imports another, add it to `references`
 4. **Test with build mode** - Always validate changes with `pnpm exec tsc -b`

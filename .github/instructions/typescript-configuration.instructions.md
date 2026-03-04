@@ -9,6 +9,16 @@ Use this file for always-on TypeScript constraints.
 - App configs: `apps/web/tsconfig*.json`, `apps/mobile/tsconfig.json`
 - Shared config: `shared/tsconfig.json`
 
+## Layering Policy
+
+- Use a layered model, not a single universal app config:
+  - `tsconfig.base.json` = cross-project defaults and aliases.
+  - `tsconfig.json` and `apps/web/tsconfig.json` = solution/reference coordinators only.
+  - `apps/web/tsconfig.web-base.json` = shared Vite/Web compiler defaults.
+  - `apps/web/tsconfig.app.json` and `apps/web/tsconfig.node.json` = Vite-specific leaf configs extending the web base.
+  - `apps/mobile/tsconfig.json` and `shared/tsconfig.json` = extend base and override as needed.
+- Do not force `shared` to use Vite app settings (`types: ["vite/client"]`, browser libs, app-only `baseUrl`).
+
 ## Required Invariants
 
 - Keep strict mode compatible.
@@ -16,6 +26,8 @@ Use this file for always-on TypeScript constraints.
   - `@ocome/shared`
   - `@ocome/shared/*`
 - Avoid cross-package relative imports that bypass aliases.
+- Keep solution configs (`files: []` + `references`) free of app/library compile options.
+- Keep web and mobile JSX/runtime options platform-specific (`react-jsx` vs `react-native`).
 
 ## Validation
 

@@ -261,7 +261,7 @@ pnpm build:mobile # Build mobile only
 - **Single build system:** Turborepo handles complexity
 - **Clear deployment model:** Each app independently releasable
 - **Scalability:** Easy to add more apps or split packages later if needed
-- **Type safety:** Unified TypeScript configuration
+- **Type safety:** Layered TypeScript configuration (shared base + target-specific app configs)
 
 ### ⚠️ Trade-offs
 

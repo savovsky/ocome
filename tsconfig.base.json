@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
+    /* Project References */
     "composite": true,
+
+    /* Runtime defaults for shared/mobile code */
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -8,7 +11,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
 
-    /* Module Resolution */
+    /* Module resolution */
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -18,16 +21,14 @@
       "@ocome/shared/redux-store/*": ["shared/src/redux-store/*"]
     },
 
-    /* Output */
+    /* Library output defaults */
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
 
     /* Linting */
+    /* Removed redundant strict flags (noImplicitAny, noImplicitThis, strictNullChecks) because strict: true already enables them. */
     "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
     "noFallthroughCasesInSwitch": true
   }
 }

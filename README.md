@@ -19,12 +19,20 @@ ocome/
 ├── apps/
 │   ├── web/                   # Web SPA (React + Vite)
 │   └── mobile/                # Mobile app (React Native + Expo)
-├── packages/                  # Shared libraries
-│   └── shared/                # Cross-platform state, types, utilities, helpers
+├── shared/                    # Cross-platform state, types, utilities, helpers
 ├── docs/architecture/         # Architecture decision records
 ├── .github/workflows/         # CI/CD pipelines
 └── [config files]
 ```
+
+## TypeScript Config Model
+
+- `tsconfig.base.json`: shared, platform-neutral defaults and path aliases.
+- `tsconfig.json` (root) and `apps/web/tsconfig.json`: solution configs using `references` only.
+- `apps/web/tsconfig.web-base.json`: shared web/Vite defaults for web leaf configs.
+- `apps/web/tsconfig.app.json` and `apps/web/tsconfig.node.json`: Vite-specific leaf configs that extend web base.
+- `apps/mobile/tsconfig.json` and `shared/tsconfig.json`: extend base and override for target needs.
+- `shared` intentionally does not inherit Vite app config, so browser-only assumptions do not leak into mobile.
 
 ### Prerequisites
 
@@ -175,7 +183,7 @@ See [Architecture Decision Record](docs/architecture/ADR-001-monorepo-structure.
 Changes to `packages/` may trigger rebuilds of dependent apps:
 
 ```bash
-# Only builds web if web/ or packages/ changed
+# Only builds web if web/ or shared/ changed
 pnpm turbo run build --filter=web
 ```
 

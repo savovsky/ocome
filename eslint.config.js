@@ -43,12 +43,9 @@ export default defineConfig([
     rules: {
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      // TODO_NEXT - discuss with the FE team if we want to keep this rule or not
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-      //
       'react-refresh/only-export-components': ['error', { allowConstantExport: true }],
-      // TODO_NEXT: remove next rule someday when codebase is clean
       '@typescript-eslint/no-explicit-any': ['off'],
       //
       // TODO_NEXT start adding rules and fix the issues
@@ -81,16 +78,14 @@ export default defineConfig([
           importOrder: [
             '^react(.*)$',
             '<THIRD_PARTY_MODULES>',
+            '^@ocome/shared(.*)$',
             '^redux(.*)$',
             '^react-redux(.*)$',
             '^react-router-dom(.*)$',
-            '^formik$',
-            '^yup$',
             '^@mui/material/(.*)$ | ^@mui/material(.*)$',
             '^@mui/icons-material/(.*)$ | @mui/icons-material(.*)$',
             '^pages/(.*)$',
             '^components/(.*)$',
-            '^utils/(.*)$',
             '^assets/(.*)$',
             '^types',
             '^[./]',
@@ -101,23 +96,9 @@ export default defineConfig([
         },
       ],
       'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
-      'no-restricted-imports': [
-        'error',
-        {
-          paths: [
-            {
-              name: '@ocome/redux-store',
-              message: 'Use @ocome/shared/redux-store instead.',
-            },
-            {
-              name: '@ocome/types',
-              message: 'Types are now part of @ocome/shared.',
-            },
-          ],
-        },
-      ],
     },
   },
+  // Prevent web app from importing mobile-specific code to maintain platform separation
   {
     files: ['apps/web/**/*.{js,ts,tsx}'],
     rules: {
@@ -134,6 +115,7 @@ export default defineConfig([
       ],
     },
   },
+  // Prevent mobile app from importing web-specific code to maintain platform separation
   {
     files: ['apps/mobile/**/*.{js,ts,tsx}'],
     rules: {
@@ -150,6 +132,7 @@ export default defineConfig([
       ],
     },
   },
+  // Ensure shared package remains app-agnostic and doesn't depend on platform-specific code
   {
     files: ['shared/**/*.{js,ts,tsx}'],
     rules: {

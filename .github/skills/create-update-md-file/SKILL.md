@@ -3,10 +3,14 @@ name: create-update-md-file
 description: Create or update Markdown files while staying compliant with markdownlint formatting and spacing rules.
 ---
 
-## Use When
+## Auto-Trigger (MANDATORY WORKFLOW)
 
-- Creating new `.md` docs.
-- Editing existing markdown content in repo docs.
+This skill **MUST** be applied automatically whenever:
+
+- Creating **any new `.md` file** (regardless of location or purpose)
+- Updating **any existing `.md` file** in the repo
+
+Do **NOT** skip this—all markdown must comply with markdownlint standards in this repository.
 
 ## Required Rules
 

@@ -8,6 +8,7 @@ A monorepo containing desktop (React + Vite) and mobile (React Native + Expo) ap
 - Use **skills** for task-specific playbooks (CI/CD, Redux changes, troubleshooting, dependency placement, markdown edits).
 - Start from [.github/context.md](.github/context.md) to find the right instruction or skill quickly.
 - If a task is infrequent or procedural, prefer the matching skill over expanding instruction files.
+- For quick Git stage/commit/push assistance, use the `git-ship` prompt in [.github/prompts/git-ship.prompt.md](.github/prompts/git-ship.prompt.md).
 
 ## 📦 Project Structure
 

@@ -14,9 +14,12 @@ Always follow these constraints for code changes.
 
 - Keep TypeScript strict-safe; avoid introducing `any`.
 - Keep public exports typed.
-- Do not disable lint rules unless necessary for task scope.
+- Never disable lint rules and TS checks without explicit permission.
 - Preserve existing architecture and naming conventions.
 - Keep changes minimal and focused on the request.
+- Do not introduce new patterns without prior approval.
+- If requirements are unclear, ask for clarification rather than making assumptions.
+- If business logic is unclear, ask for clarification rather than making assumptions.
 
 ## Formatting Rules
 

@@ -6,7 +6,7 @@ const { TAG_USERS } = invalidationTags;
 
 export const apiUsers = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    GET_users: builder.query<any, void>({
+    getUsers: builder.query<any, void>({
       query: () => {
         return {
           method: 'GET',
@@ -32,4 +32,4 @@ export const apiUsers = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGET_usersQuery } = apiUsers;
+export const { useGetUsersQuery } = apiUsers;

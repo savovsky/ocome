@@ -15,11 +15,30 @@ export default defineConfig([
   // 'react-hooks/' ('eslint-plugin-react-hooks')
   ...expoLint,
   { ignores: ['dist', '**/dist/**'] },
+  // Config files: no type-aware linting (not part of TypeScript projects)
+  {
+    files: ['*.config.{js,ts}', '**/*.config.{js,ts}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.node,
+    },
+  },
+  // Source files: enable type-aware linting
   {
     files: ['**/*.{js,ts,tsx}'],
+    ignores: ['*.config.{js,ts}', '**/*.config.{js,ts}'], // Exclude config files
     languageOptions: {
       ecmaVersion: 2020, // Support modern ECMAScript features
       globals: globals.browser, // Include browser globals for web and React Native environments
+      parserOptions: {
+        project: [
+          './tsconfig.json',
+          './apps/*/tsconfig.json',
+          './apps/*/tsconfig.*.json',
+          './shared/tsconfig.json',
+        ],
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
     plugins: {
       'react-refresh': reactRefreshPlugin,
@@ -91,6 +110,23 @@ export default defineConfig([
           'format': ['camelCase'],
         },
         {
+          'selector': 'import',
+          'format': ['camelCase', 'PascalCase'], // Allow PascalCase for component imports
+        },
+        {
+          'selector': 'variable',
+          'format': ['camelCase', 'PascalCase', 'UPPER_CASE'], // Allow PascalCase for React components and UPPER_CASE for constants
+        },
+        {
+          'selector': 'parameter',
+          'format': ['camelCase'],
+          'leadingUnderscore': 'allow', // Allow leading underscore for unused parameters
+        },
+        {
+          'selector': 'function',
+          'format': ['camelCase', 'PascalCase'], // Allow PascalCase for React components
+        },
+        {
           'selector': 'typeLike',
           'format': ['PascalCase']
         },
@@ -104,7 +140,7 @@ export default defineConfig([
           'format': ['UPPER_CASE']
         },
         {
-          'selector': ['memberLike', 'variableLike'],
+          'selector': 'variable',
           'types': ['boolean'],
           'format': ['PascalCase'],
           'prefix': ['can', 'did', 'has', 'is', 'must', 'needs', 'should', 'will']

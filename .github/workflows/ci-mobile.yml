@@ -1,5 +1,10 @@
 name: CI - Mobile
 
+# Note: Path filters intentionally removed to ensure workflows run on ALL pushes.
+# This prevents missing checks for root-level config changes (eslint.config.js,
+# tsconfig.json, package.json, etc.) that affect all packages. The extra CI time
+# is negligible (~3 min/push) and well within free tier limits for solo development.
+
 on:
   push:
     branches: [main, develop]

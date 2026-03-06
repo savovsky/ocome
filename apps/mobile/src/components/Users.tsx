@@ -1,12 +1,10 @@
 import type { FC } from 'react';
 import { Text, View } from 'react-native';
 
-import { apiUsers } from '@ocome/shared/redux-store';
-
-const { useGET_usersQuery } = apiUsers;
+import { useGetUsersQuery } from '@ocome/shared/redux-store/apis/apiUsers';
 
 const Users: FC = () => {
-  const { isFetching, isError, data } = useGET_usersQuery();
+  const { isFetching, isError, data } = useGetUsersQuery();
 
   if (isFetching) {
     return <Text>Loading...</Text>;

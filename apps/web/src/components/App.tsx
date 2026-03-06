@@ -13,7 +13,7 @@ const App: FC = () => {
     <StrictMode>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <div>Vite + React</div>
+          <div>Vite & React</div>
           <ComponentPlaceholder componentName='Users'>
             <Users />
           </ComponentPlaceholder>

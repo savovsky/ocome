@@ -1,30 +1,58 @@
 ---
 name: create-update-md-file
-description: Create or update Markdown files while staying compliant with markdownlint formatting and spacing rules.
+description: "**MANDATORY FOR ALL .md FILES** — Apply markdownlint rules (MD031 blank lines around code blocks, MD040 language tags, MD022 heading spacing) when creating or updating ANY Markdown file. ALWAYS read this skill BEFORE touching .md files."
 ---
 
-## Auto-Trigger (MANDATORY WORKFLOW)
+## When to Apply
 
-This skill **MUST** be applied automatically whenever:
+Read and apply this skill automatically when:
 
-- Creating **any new `.md` file** (regardless of location or purpose)
-- Updating **any existing `.md` file** in the repo
+- Creating any new `.md` file
+- Updating any existing `.md` file
+- User reports markdown formatting issues or markdownlint errors
 
-Do **NOT** skip this—all markdown must comply with markdownlint standards in this repository.
+## Required Markdownlint Rules
 
-## Required Rules
+**MD031 - Blank lines around fenced code blocks**
 
-- Blank lines around headings (`MD022`).
-- No trailing punctuation in headings (`MD026`).
-- Blank lines around fenced code blocks (`MD031`).
-- Blank lines around lists (`MD032`).
-- Language set on fenced code blocks (`MD040`).
-- Consistent table formatting (`MD060`).
-- No trailing spaces (`MD009`).
+- Add blank line before opening ` ```lang `
+- Add blank line after closing ` ``` `
+- Code blocks directly adjacent to text/headings violate this rule
 
-## Practical Checklist
+**MD040 - Language identifier on all code blocks**
 
-- Keep heading hierarchy simple and consistent.
-- Ensure each code block declares language (`bash`, `json`, `typescript`, etc.).
-- Use one table style consistently in each file.
-- Avoid accidental whitespace-only line changes.
+- Every code block must specify a language: ` ```bash `, ` ```json `, ` ```typescript `, ` ```text `
+- Never use bare ` ``` ` without a language tag
+
+**MD022 - Blank lines around headings**
+
+- Add blank line before `## Heading`
+- Add blank line after `## Heading`
+
+**MD026 - No trailing punctuation in headings**
+
+- Headings should not end with `.`, `!`, or `:`
+
+**MD032 - Blank lines around lists**
+
+- Add blank line before first list item
+- Add blank line after last list item
+
+**MD009 - No trailing spaces**
+
+- Remove spaces at end of lines
+
+**MD060 - Consistent table formatting**
+
+- Use one table style consistently per file
+
+## Pre-completion Checklist
+
+Before finishing markdown work:
+
+1. Every code block has blank lines before and after
+2. Every code block has a language tag
+3. All headings have blank lines around them
+4. Heading hierarchy is logical (no level skipping)
+5. No trailing punctuation in headings
+6. No trailing spaces anywhere

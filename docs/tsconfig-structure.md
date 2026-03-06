@@ -194,6 +194,7 @@ When apps reference the shared package, the `include` pattern must explicitly li
 - Type-checking covers all dependencies across the monorepo
 
 **Example:**
+
 ```json
 {
   "include": ["src", "../../shared/src"]

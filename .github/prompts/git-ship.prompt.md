@@ -52,13 +52,13 @@ After staging, suggest a conventional commit message based on the changes. Forma
 <body>
 ```
 
-**Ask the user to approve with these options:**
+**Use the vscode_askQuestions tool to present options as buttons:**
 
-1. Approve the message as-is
-2. Edit/modify the message
-3. Cancel the workflow
+- Option 1: "Approve" - Use the message as-is
+- Option 2: "Edit" - Allow user to provide a custom commit message (set allowFreeformInput: true)
+- Option 3: "Cancel" - Stop the workflow
 
-Provide a clear interface for the user to edit if needed.
+If user selects "Edit", prompt them again to enter their custom commit message.
 
 ### Step 4: Commit
 
@@ -68,19 +68,9 @@ Once the user approves the message, commit without further approval:
 git commit -m "<approved-message>"
 ```
 
-### Step 5: Push Approval
+### Step 5: Push and Finish
 
-After commit succeeds, explicitly ask for push approval:
-
-- Show the final repo status
-- Ask: "Ready to push to origin?"
-- Wait for user confirmation
-
-Only proceed if user approves.
-
-### Step 6: Push and Finish
-
-Execute push:
+After commit succeeds, push to origin:
 
 ```bash
 git push
@@ -118,5 +108,4 @@ Keep output concise and clear:
 3. Proposed commit message
 4. User approval status
 5. Commit result
-6. Final push confirmation
-7. Push result and final status
+6. Push result and final status

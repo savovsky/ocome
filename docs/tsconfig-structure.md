@@ -69,8 +69,10 @@ Solution configs should not inherit compiler options that affect emit behavior, 
 - `allowImportingTsExtensions: true` - Allow importing `.ts` files directly
 - `verbatimModuleSyntax: true` - Preserve ES module syntax as written
 - `moduleDetection: "force"` - Force module detection for all files
-- `include: ["src", ".expo/types/**/*.ts", "expo-env.d.ts"]` - Source files
+- `include: ["src", ".expo/types/**/*.ts", "expo-env.d.ts", "../../shared/src"]` - Include app source and shared package
 - `references` - Links to shared package
+
+**Note on shared package inclusion:** The `include` pattern explicitly lists `../../shared/src` to ensure TypeScript properly resolves and type-checks all shared package dependencies during compilation. This is required for composite project builds to work correctly.
 
 ### `apps/web/tsconfig.json`
 
@@ -99,7 +101,9 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 - `lib: ["ES2022", "DOM", "DOM.Iterable"]` - Modern JS + DOM types
 - `types: ["vite/client"]` - Vite-specific types
 - `baseUrl: "../../"` - Resolve imports from monorepo root
-- `include: ["src"]` - Application source only
+- `include: ["src", "../../shared/src"]` - Include app source and shared package
+
+**Note on shared package inclusion:** The `include` pattern explicitly lists `../../shared/src` to ensure TypeScript properly resolves and type-checks all shared package dependencies during compilation. This is required for composite project builds to work correctly.
 
 ### `apps/web/tsconfig.web-base.json`
 
@@ -180,6 +184,23 @@ apps/web/tsconfig.json (solution)
   ├─ references → tsconfig.node.json
   └─ (both extend tsconfig.web-base.json)
 ```
+
+### Important: Explicit Include Patterns for Shared Package
+
+When apps reference the shared package, the `include` pattern must explicitly list the shared package source files. This ensures:
+
+- TypeScript properly resolves all imported files from the shared package during compilation
+- Composite project builds don't fail with "file not listed within file list" errors (TS6307)
+- Type-checking covers all dependencies across the monorepo
+
+**Example:**
+```json
+{
+  "include": ["src", "../../shared/src"]
+}
+```
+
+Without explicit shared package inclusion, TypeScript won't recursively include referenced project files, causing resolution failures during build.
 
 ## Common Commands
 

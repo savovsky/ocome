@@ -140,6 +140,10 @@ export default defineConfig([
           'format': ['UPPER_CASE']
         },
         {
+          'selector': 'objectLiteralProperty',
+          'format': ['camelCase', 'UPPER_CASE', 'PascalCase'] // Allow UPPER_CASE for object literal properties (e.g., constants in config objects)
+        },
+        {
           'selector': 'variable',
           'types': ['boolean'],
           'format': ['PascalCase'],

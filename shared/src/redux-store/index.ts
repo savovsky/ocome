@@ -15,8 +15,10 @@ import { apiUsers } from './apis/apiUsers';
 import { baseApi } from './apis/baseApi';
 import { sliceModals } from './slices/sliceModals';
 
-export const createStore = (storage: any) => {
-  const persistConfig = (key: string) => {
+export const createStore = (
+  storage: any,
+): { store: ReturnType<typeof configureStore>; persistor: ReturnType<typeof persistStore> } => {
+  const persistConfig = (key: string): { key: string; storage: any } => {
     return {
       key,
       storage,
@@ -28,7 +30,7 @@ export const createStore = (storage: any) => {
     [baseApi.reducerPath]: baseApi.reducer,
   };
 
-  const middleware = (getDefaultMiddleware: any) => {
+  const middleware = (getDefaultMiddleware: any): any => {
     return getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

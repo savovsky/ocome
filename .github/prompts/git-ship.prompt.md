@@ -1,50 +1,115 @@
 ---
 name: git-ship
-description: Stage changes, craft a commit message, commit, and push with minimal prompts
+description: Run quality checks, stage changes, and commit with consistent approval workflow
 ---
 
 # Git Ship Prompt
 
-Use this prompt to run a safe, repeatable Git workflow with as few approval steps as possible.
+Provides a safe, repeatable workflow with consistent approval steps at predictable points.
 
-## Default Behavior
+## Workflow Steps
 
-1. Check repository state first:
-   - `git status --short --branch`
-2. If there are no staged files, stage all tracked/untracked changes:
-   - `git add -A`
-3. Propose a conventional commit message from the diff summary.
-4. Commit and push using a single terminal command when possible:
-   - `git add -A; git commit -m "<message>"; git push; git status --short --branch`
-5. Run a quick status check to confirm the working tree is clean:
-   - `git status --short --branch`
+### Step 1: Quality Checks
+
+Run all linters and type checks across apps and packages without asking for approval:
+
+```bash
+pnpm lint
+```
+
+```bash
+pnpm tsc
+```
+
+If either command fails:
+- Report all errors and warnings clearly
+- Stop the workflow immediately
+- Do not proceed to staging or committing
+
+### Step 2: Stage Changes
+
+If all checks pass, stage all changes without asking for approval:
+
+```bash
+git status --short --branch
+git add .
+```
+
+### Step 3: Propose Commit Message
+
+After staging, suggest a conventional commit message based on the changes. Format as follows:
+
+```text
+<type>(<scope>): <subject>
+
+<body>
+```
+
+**Ask the user to approve with these options:**
+
+1. Approve the message as-is
+2. Edit/modify the message
+3. Cancel the workflow
+
+Provide a clear interface for the user to edit if needed.
+
+### Step 4: Commit
+
+Once the user approves the message, commit without further approval:
+
+```bash
+git commit -m "<approved-message>"
+```
+
+### Step 5: Push Approval
+
+After commit succeeds, explicitly ask for push approval:
+
+- Show the final repo status
+- Ask: "Ready to push to origin?"
+- Wait for user confirmation
+
+Only proceed if user approves.
+
+### Step 6: Push and Finish
+
+Execute push:
+
+```bash
+git push
+```
+
+Run final status check:
+
+```bash
+git status --short --branch
+```
+
+## Conventional Commit Types
+
+- `feat:` New feature
+- `fix:` Bug fix
+- `chore:` Build, dependencies, or tooling changes
+- `refactor:` Code refactoring without behavior change
+- `docs:` Documentation changes
+- `test:` Test-related changes
 
 ## Safety Rules
 
-- Never force push unless explicitly requested.
-- If commit fails (for example, nothing to commit), report the exact reason and stop.
-- If push fails, report the error and suggest the next safe command.
-- Do not rewrite history unless explicitly requested.
-
-## Message Rules
-
-Prefer Conventional Commits:
-
-- `feat: ...`
-- `fix: ...`
-- `chore: ...`
-- `refactor: ...`
-- `docs: ...`
-- `test: ...`
-
-If no message is provided by the user, propose one and ask for confirmation before commit.
+- Never force push unless explicitly requested
+- If lint or tsc fails, report all issues and stop immediately
+- If commit fails, report the exact reason and stop
+- If push fails, report the error and suggest recovery steps
+- Do not rewrite history unless explicitly requested
 
 ## Output Format
 
-Keep output concise:
+Keep output concise and clear:
 
-1. Status summary
-2. Commit message used
-3. Command executed
-4. Push result (success/failure)
-5. Final status check (clean/not clean)
+1. Quality check results (pass/fail details)
+2. Files staged (if checks passed)
+3. Proposed commit message
+4. User approval status
+5. Commit result
+6. Final push confirmation
+7. Push result and final status

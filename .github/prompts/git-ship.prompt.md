@@ -7,6 +7,11 @@ description: Run quality checks, stage changes, and commit with consistent appro
 
 Provides a safe, repeatable workflow with consistent approval steps at predictable points.
 
+## Invocation
+
+Run this workflow only when the user explicitly invokes `/git-ship` or `git-ship`.
+Do not infer this workflow from ambiguous phrases such as "ship this".
+
 ## Workflow Steps
 
 ### Step 1: Quality Checks
@@ -22,9 +27,11 @@ pnpm tsc
 ```
 
 If either command fails:
+
 - Report all errors and warnings clearly
 - Stop the workflow immediately
 - Do not proceed to staging or committing
+- Do not offer override; user must fix checks first
 
 ### Step 2: Stage Changes
 

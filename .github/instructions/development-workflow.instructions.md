@@ -34,3 +34,12 @@ Use this as the default execution policy for AI coding tasks.
 - Dependency ownership: `../skills/add-new-project-dependency/SKILL.md`
 - CI/pipeline updates: `../skills/ci-cd-workflows/SKILL.md`
 - Debugging incidents: `../skills/troubleshooting/SKILL.md`
+
+## Prompt Workflows
+
+- Treat `.github/prompts/*.prompt.md` as binding workflow definitions when explicitly invoked.
+- For `git-ship`, only trigger the flow on exact invocation: `/git-ship` or `git-ship`.
+- Do not use fuzzy matching for trigger phrases such as "ship this".
+- Execute prompt steps in strict order; do not skip, merge, or reorder gates.
+- For approval gates, wait for explicit user confirmation before continuing.
+- For `git-ship` quality checks, if `pnpm lint` or `pnpm tsc` fails, stop immediately and do not offer override.

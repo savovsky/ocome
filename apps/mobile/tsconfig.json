@@ -10,7 +10,8 @@
   "include": [
     "src",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "../../shared/src"
   ],
   "references": [
     { "path": "../../shared" }

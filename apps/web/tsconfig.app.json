@@ -10,5 +10,5 @@
     "baseUrl": "../../",
     "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": ["src", "../../shared/src"]
 }

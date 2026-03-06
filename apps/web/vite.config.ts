@@ -5,6 +5,8 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Load env vars from monorepo root (e.g. ../../.env)
+  envDir: '../../',
   // server - local dev only config
   server: {
     port: 3000,

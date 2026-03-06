@@ -1,5 +1,4 @@
 import { Text, View } from 'react-native';
-
 import Users from '../components/Users';
 
 export default function Index() {

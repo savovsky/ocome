@@ -1,5 +1,4 @@
 import { type ThunkDispatch, type UnknownAction, configureStore } from '@reduxjs/toolkit';
-
 import {
   FLUSH,
   PAUSE,
@@ -10,7 +9,6 @@ import {
   persistReducer,
   persistStore,
 } from 'redux-persist';
-
 import { apiUsers } from './apis/apiUsers';
 import { baseApi } from './apis/baseApi';
 import { sliceModals } from './slices/sliceModals';

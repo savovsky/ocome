@@ -1,5 +1,4 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
-
 import { keysModals } from '../../keys/keysModals';
 import { type IModalLayer, type IModalOpen } from '../../types/modals';
 

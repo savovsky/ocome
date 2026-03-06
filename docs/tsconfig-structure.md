@@ -65,6 +65,10 @@ Solution configs should not inherit compiler options that affect emit behavior, 
 **Key Overrides:**
 
 - `jsx: "react-native"` - React Native JSX transform
+- `noEmit: true` - Metro handles transpilation
+- `allowImportingTsExtensions: true` - Allow importing `.ts` files directly
+- `verbatimModuleSyntax: true` - Preserve ES module syntax as written
+- `moduleDetection: "force"` - Force module detection for all files
 - `include: ["src", ".expo/types/**/*.ts", "expo-env.d.ts"]` - Source files
 - `references` - Links to shared package
 
@@ -88,12 +92,39 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 
 **Key Settings:**
 
-- `composite: true` - Part of project references
+- `tsBuildInfoFile: "./node_modules/.tmp/tsconfig.app.tsbuildinfo"` - Cache for incremental builds
 - `jsx: "react-jsx"` - React 17+ JSX transform
-- `noEmit: true` - Vite handles the build
 - `target: "ES2022"` - Modern browser target
+- `useDefineForClassFields: true` - TC39 class field semantics
+- `lib: ["ES2022", "DOM", "DOM.Iterable"]` - Modern JS + DOM types
 - `types: ["vite/client"]` - Vite-specific types
+- `baseUrl: "../../"` - Resolve imports from monorepo root
 - `include: ["src"]` - Application source only
+
+### `apps/web/tsconfig.web-base.json`
+
+**Purpose:** Shared base configuration for Vite web app configs (app and node).
+
+**Extends:** `../../tsconfig.base.json`
+
+**Key Settings:**
+
+- `composite: true` - Enables project references
+- `module: "ESNext"` - ES module output for bundler
+- `skipLibCheck: true` - Skip type-checking of declaration files for speed
+- `moduleResolution: "bundler"` - Bundler-style module resolution
+- `allowImportingTsExtensions: true` - Allow importing `.ts` files directly
+- `verbatimModuleSyntax: true` - Preserve ES module syntax as written
+- `moduleDetection: "force"` - Force module detection for all files
+- `noEmit: true` - Output is handled by Vite, not TypeScript
+- `noUnusedLocals: true` - Error on unused local variables
+- `noUnusedParameters: true` - Error on unused function parameters
+- `erasableSyntaxOnly: true` - Only emit syntax that can be safely removed
+- `noFallthroughCasesInSwitch: true` - Error on uncovered switch cases
+- `noUncheckedSideEffectImports: true` - Warn about side effect imports
+
+**Why it's separate:**
+Both `tsconfig.app.json` and `tsconfig.node.json` share common settings (bundler mode, module resolution) but have different targets and libraries. This base extracts the shared configuration.
 
 ### `apps/web/tsconfig.node.json`
 
@@ -143,6 +174,11 @@ Project references enable TypeScript to:
 ```text
 apps/mobile/tsconfig.json
   └─ references → shared
+
+apps/web/tsconfig.json (solution)
+  ├─ references → tsconfig.app.json
+  ├─ references → tsconfig.node.json
+  └─ (both extend tsconfig.web-base.json)
 ```
 
 ## Common Commands
@@ -168,7 +204,8 @@ pnpm exec tsc -b --clean
 
 - **Base config** provides shared defaults
 - **Solution configs** orchestrate multi-project builds without interfering with compiler behavior
-- **App-specific configs** customize for Expo vs. Vite requirements
+- **Web base config** (`tsconfig.web-base.json`) centralizes Vite-specific compiler settings (bundler mode, module resolution, strict linting) shared by app and node configs
+- **App-specific configs** customize for Expo vs. Vite vs. Node.js requirements
 
 ### JSX Handling
 
@@ -213,6 +250,7 @@ import { ... } from '@ocome/shared/redux-store';
 ## Maintenance Tips
 
 1. **Don't extend base in solution configs** - Keep `tsconfig.json` and `apps/web/tsconfig.json` as pure reference coordinators
-2. **Keep web configs isolated from root base** - Use `apps/web/tsconfig.web-base.json` + leaf configs for Vite-specific requirements
-3. **Use project references consistently** - If a package imports another, add it to `references`
-4. **Test with build mode** - Always validate changes with `pnpm exec tsc -b`
+2. **Keep web configs isolated from root base** - Use `apps/web/tsconfig.web-base.json` + leaf configs for Vite-specific requirements (bundler mode, linting, etc.)
+3. **Web-base inheritance** - Both `tsconfig.app.json` and `tsconfig.node.json` should extend `tsconfig.web-base.json` to share Vite settings
+4. **Use project references consistently** - If a package imports another, add it to `references`
+5. **Test with build mode** - Always validate changes with `pnpm exec tsc -b`

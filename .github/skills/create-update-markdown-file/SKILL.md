@@ -1,5 +1,5 @@
 ---
-name: create-update-md-file
+name: create-update-markdown-file
 description: "**MANDATORY FOR ALL .md FILES** — Apply markdownlint rules (MD031 blank lines around code blocks, MD040 language tags, MD022 heading spacing) when creating or updating ANY Markdown file. ALWAYS read this skill BEFORE touching .md files."
 ---
 
@@ -32,6 +32,12 @@ Read and apply this skill automatically when:
 **MD026 - No trailing punctuation in headings**
 
 - Headings should not end with `.`, `!`, or `:`
+
+**MD029 - Ordered list item prefix**
+
+- Use consistent numbering style for ordered lists (1., 2., 3.)
+- Do not mix numbering styles (e.g., 1., 2., 5.) in the same list
+- Each item should increment by one: 1., 2., 3., etc.
 
 **MD032 - Blank lines around lists**
 

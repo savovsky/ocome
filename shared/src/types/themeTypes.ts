@@ -1,6 +1,6 @@
 import { keysTheme } from '../keys/keysTheme';
 import { keysThemeMode } from '../keys/keysThemeMode';
-import { ObjectValues } from './typesCommon';
+import type { ObjectValues } from './typesCommon';
 
 export type ITheme = ObjectValues<typeof keysTheme>;
 export type IThemeMode = ObjectValues<typeof keysThemeMode>;

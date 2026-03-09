@@ -2,7 +2,7 @@ import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { keysLanguage } from '@ocome/shared/keys/keysLanguage';
 import { keysTheme } from '@ocome/shared/keys/keysTheme';
 import type { ITheme } from '../../types/themeTypes';
-import { ILanguage } from '../../types/typesCommon';
+import type { ILanguage } from '../../types/typesCommon';
 
 const { THEME_LIGHT } = keysTheme;
 const { ENG } = keysLanguage;

@@ -1,7 +1,7 @@
 import { type Theme, createTheme } from '@mui/material/styles';
-import type { DesignTokens } from '@ocome/shared/types/themeTypes';
+import type { IDesignTokens } from '@ocome/shared/types/themeTypes';
 
-export function createMuiTheme(tokens: DesignTokens): Theme {
+export function createMuiTheme(tokens: IDesignTokens): Theme {
   return createTheme({
     palette: {
       mode: tokens.mode,

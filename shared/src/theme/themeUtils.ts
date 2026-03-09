@@ -1,5 +1,5 @@
 import { keysTheme } from '../keys/keysTheme';
-import type { IDesignTokens, ITheme } from '../types/themeTypes';
+import type { IDesignTokens, ITheme, IThemeMode } from '../types/themeTypes';
 import { coldTheme, darkTheme, lightTheme, warmTheme } from './themeTokens';
 
 const SHORT_HEX_LENGTH = 3;
@@ -58,4 +58,28 @@ export function getTheme(theme: ITheme): IDesignTokens {
     default:
       return lightTheme;
   }
+}
+
+/**
+ * Detects the system color-scheme preference and returns the matching theme variant.
+ *
+ * @param systemColorScheme - Optional scheme from React Native's useColorScheme() hook.
+ *   Pass this on mobile so the shared package doesn't need to import react-native.
+ *   Omit on web — the function falls back to window.matchMedia.
+ */
+export function detectSystemTheme(systemColorScheme?: IThemeMode | null): ITheme {
+  if (systemColorScheme !== undefined) {
+    return systemColorScheme === 'dark' ? keysTheme.THEME_DARK : keysTheme.THEME_LIGHT;
+  }
+
+  try {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return isDark ? keysTheme.THEME_DARK : keysTheme.THEME_LIGHT;
+    }
+  } catch {
+    // Ignore — unsupported browser
+  }
+
+  return keysTheme.THEME_LIGHT;
 }

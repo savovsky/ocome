@@ -10,11 +10,13 @@ const { ENG } = keysLanguage;
 export interface ISlice {
   theme: ITheme;
   language: ILanguage;
+  hasExplicitTheme: boolean;
 }
 
 const initialState: ISlice = {
   theme: THEME_LIGHT,
   language: ENG,
+  hasExplicitTheme: false,
 };
 
 export const sliceUserPreferences = createSlice({
@@ -23,6 +25,11 @@ export const sliceUserPreferences = createSlice({
   reducers: {
     setTheme(state: ISlice, action: PayloadAction<ITheme>) {
       state.theme = action.payload;
+    },
+
+    setExplicitTheme(state: ISlice, action: PayloadAction<ITheme>) {
+      state.theme = action.payload;
+      state.hasExplicitTheme = true;
     },
 
     setLanguage(state: ISlice, action: PayloadAction<ILanguage>) {
@@ -35,4 +42,4 @@ export const sliceUserPreferences = createSlice({
   },
 });
 
-export const { setTheme, setLanguage, resetUserPreferences } = sliceUserPreferences.actions;
+export const { setTheme, setExplicitTheme, setLanguage, resetUserPreferences } = sliceUserPreferences.actions;

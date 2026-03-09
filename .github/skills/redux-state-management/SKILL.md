@@ -16,12 +16,27 @@ description: Implement and evolve Redux Toolkit + RTK Query + redux-persist patt
 - API base + endpoints: `shared/src/redux-store/apis/`
 - UI apps consume shared exports only.
 
+## Store Entrypoint Boundary
+
+- Use `shared/src/redux-store/index.ts` only to wire the store and register reducers/slices.
+- Do not add utility functions in `shared/src/redux-store/index.ts`.
+- Do not add unrelated type declarations in `shared/src/redux-store/index.ts`.
+- Keep cross-cutting helpers and reusable types in dedicated files/folders (`hooks/`, `types/`, or feature files).
+
 ## Implementation Pattern
 
 1. Add/modify slice or API endpoint in shared.
-2. Export from shared redux index if needed.
-3. Keep types explicit for payloads and responses.
+2. Register new slice reducers in `shared/src/redux-store/index.ts`.
+3. Keep types explicit for payloads and responses in feature/type files.
 4. Keep invalidation tags consistent for query/mutation pairs.
+
+## Hooks Pattern
+
+- Keep `useStoreDispatch.ts` as a typed wrapper for `useDispatch`.
+- Keep `useStoreSelector.ts` as a typed wrapper for `useSelector`.
+- For each slice, expose a dedicated hook in `hooks/` that reads only that slice via `useStoreSelector`.
+- Follow naming used in the folder: `useSlice<Feature>()` function in `use<Feature>.ts` with a default export.
+- Keep hook files focused on selector access only; do not add store wiring or general utilities there.
 
 ## Persist + Consumer Considerations
 

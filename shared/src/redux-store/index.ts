@@ -9,15 +9,12 @@ import {
   persistReducer,
   persistStore,
 } from 'redux-persist';
-import type { ThemeVariant } from '../types/themeTypes';
 import { apiUsers } from './apis/apiUsers';
 import { baseApi } from './apis/baseApi';
 import { sliceModals } from './slices/sliceModals';
-import { sliceTheme } from './slices/sliceTheme';
+import { sliceUserPreferences } from './slices/sliceUserPreferences';
 
-export const createStore = (
-  storage: any,
-): { store: ReturnType<typeof configureStore>; persistor: ReturnType<typeof persistStore> } => {
+export const createStore = (storage: any) => {
   const persistConfig = (key: string): { key: string; storage: any } => {
     return {
       key,
@@ -27,7 +24,10 @@ export const createStore = (
 
   const reducer = {
     [sliceModals.name]: persistReducer(persistConfig(sliceModals.name), sliceModals.reducer),
-    [sliceTheme.name]: persistReducer(persistConfig(sliceTheme.name), sliceTheme.reducer),
+    [sliceUserPreferences.name]: persistReducer(
+      persistConfig(sliceUserPreferences.name),
+      sliceUserPreferences.reducer,
+    ),
     [baseApi.reducerPath]: baseApi.reducer,
   };
 
@@ -45,27 +45,10 @@ export const createStore = (
   return { store, persistor };
 };
 
+// https://react-redux.js.org/using-react-redux/usage-with-typescript
+// Infer the `StoreState` and `StoreDispatch` types from the store itself
 export type StoreState = ReturnType<ReturnType<typeof createStore>['store']['getState']>;
 export type StoreDispatch = ThunkDispatch<StoreState, any, UnknownAction>;
 
+// TODO: verify why this export is needed and if it can be removed (there is one baseApi))
 export { apiUsers };
-export { setTheme, resetThemeSlice } from './slices/sliceTheme';
-export type { ISliceTheme } from './slices/sliceTheme';
-
-const VALID_THEME_VARIANTS: ReadonlySet<string> = new Set<ThemeVariant>(['light', 'dark', 'cold', 'warm']);
-
-interface ThemeStateLike {
-  theme?: { variant?: unknown };
-}
-
-const hasThemeVariant = (state: unknown): state is ThemeStateLike => {
-  return typeof state === 'object' && state !== null && 'theme' in state;
-};
-
-export const selectThemeVariant = (state: unknown): ThemeVariant => {
-  const variant = hasThemeVariant(state) ? state.theme?.variant : undefined;
-  if (typeof variant === 'string' && VALID_THEME_VARIANTS.has(variant)) {
-    return variant as ThemeVariant;
-  }
-  return 'light';
-};

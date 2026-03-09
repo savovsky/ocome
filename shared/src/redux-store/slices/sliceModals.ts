@@ -4,12 +4,12 @@ import { type IModalLayer, type IModalOpen } from '../../types/modals';
 
 const { LAYER_1, LAYER_2 } = keysModals.modalsLayersKeys;
 
-export interface ISliceModals {
+export interface ISlice {
   [LAYER_1]: IModalLayer;
   [LAYER_2]: IModalLayer;
 }
 
-const initialState: ISliceModals = {
+const initialState: ISlice = {
   [LAYER_1]: {
     type: null,
     data: null,
@@ -24,7 +24,7 @@ export const sliceModals = createSlice({
   name: 'modals',
   initialState,
   reducers: {
-    openModal(state: ISliceModals, action: PayloadAction<IModalOpen>) {
+    openModal(state: ISlice, action: PayloadAction<IModalOpen>) {
       const { type, layer, data: modalData = null } = action.payload;
 
       switch (layer) {
@@ -42,7 +42,7 @@ export const sliceModals = createSlice({
       }
     },
 
-    closeModal(state: ISliceModals) {
+    closeModal(state: ISlice) {
       if (state[LAYER_2].type) {
         state[LAYER_2] = initialState[LAYER_2];
       } else {

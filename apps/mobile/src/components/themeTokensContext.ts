@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { lightTheme } from '@ocome/shared/theme';
-import type { DesignTokens } from '@ocome/shared/types/themeTypes';
+import { lightTheme } from '@ocome/shared/theme/themeTokens';
+import type { IDesignTokens } from '@ocome/shared/types/themeTypes';
 
-export const ThemeContext = createContext<DesignTokens>(lightTheme);
+export const ThemeContext = createContext<IDesignTokens>(lightTheme);

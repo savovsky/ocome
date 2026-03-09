@@ -4,6 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import storage from 'redux-persist/lib/storage';
 import { createStore } from '@ocome/shared/redux-store';
 import ComponentPlaceholder from './ComponentPlaceholder';
+import ThemePlayground from './ThemePlayground';
 import ThemedMuiProvider from './ThemedMuiProvider';
 import Users from './Users';
 
@@ -19,6 +20,7 @@ const App: FC = () => {
             <ComponentPlaceholder componentName='Users'>
               <Users />
             </ComponentPlaceholder>
+            <ThemePlayground />
           </ThemedMuiProvider>
         </PersistGate>
       </Provider>

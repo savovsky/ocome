@@ -1,6 +1,11 @@
-export type ThemeVariant = 'light' | 'dark' | 'cold' | 'warm';
+import { keysTheme } from '../keys/keysTheme';
+import { keysThemeMode } from '../keys/keysThemeMode';
+import { ObjectValues } from './typesCommon';
 
-export interface ColorTokens {
+export type ITheme = ObjectValues<typeof keysTheme>;
+export type IThemeMode = ObjectValues<typeof keysThemeMode>;
+
+export interface IColorTokens {
   primary: string;
   primaryDark: string;
   primaryLight: string;
@@ -9,13 +14,14 @@ export interface ColorTokens {
   surface: string;
   text: string;
   textSecondary: string;
+  textDisabled: string;
   error: string;
   warning: string;
   success: string;
   border: string;
 }
 
-export interface SpacingTokens {
+export interface ISpacingTokens {
   xs: number;
   sm: number;
   md: number;
@@ -24,7 +30,7 @@ export interface SpacingTokens {
   xxl: number;
 }
 
-export interface TypographyTokens {
+export interface ITypographyTokens {
   fontSizeXs: number;
   fontSizeSm: number;
   fontSizeMd: number;
@@ -39,7 +45,7 @@ export interface TypographyTokens {
   lineHeightRelaxed: number;
 }
 
-export interface RadiiTokens {
+export interface IRadiiTokens {
   none: number;
   sm: number;
   md: number;
@@ -47,10 +53,10 @@ export interface RadiiTokens {
   full: number;
 }
 
-export interface DesignTokens {
-  mode: 'light' | 'dark';
-  colors: ColorTokens;
-  spacing: SpacingTokens;
-  typography: TypographyTokens;
-  radii: RadiiTokens;
+export interface IDesignTokens {
+  mode: IThemeMode;
+  colors: IColorTokens;
+  spacing: ISpacingTokens;
+  typography: ITypographyTokens;
+  radii: IRadiiTokens;
 }

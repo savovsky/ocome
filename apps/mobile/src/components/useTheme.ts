@@ -1,29 +1,29 @@
 import { useContext } from 'react';
 import type {
-  ColorTokens,
-  DesignTokens,
-  RadiiTokens,
-  SpacingTokens,
-  TypographyTokens,
+  IColorTokens,
+  IDesignTokens,
+  IRadiiTokens,
+  ISpacingTokens,
+  ITypographyTokens,
 } from '@ocome/shared/types/themeTypes';
 import { ThemeContext } from './themeTokensContext';
 
-export function useTheme(): DesignTokens {
+export function useTheme(): IDesignTokens {
   return useContext(ThemeContext);
 }
 
-export function useColors(): ColorTokens {
+export function useColors(): IColorTokens {
   return useTheme().colors;
 }
 
-export function useSpacing(): SpacingTokens {
+export function useSpacing(): ISpacingTokens {
   return useTheme().spacing;
 }
 
-export function useTypography(): TypographyTokens {
+export function useTypography(): ITypographyTokens {
   return useTheme().typography;
 }
 
-export function useRadii(): RadiiTokens {
+export function useRadii(): IRadiiTokens {
   return useTheme().radii;
 }

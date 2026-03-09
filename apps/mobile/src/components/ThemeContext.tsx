@@ -1,7 +1,6 @@
 import { type FC, type ReactNode, useMemo } from 'react';
-import { selectThemeVariant } from '@ocome/shared/redux-store';
-import useStoreSelector from '@ocome/shared/redux-store/hooks/useStoreSelector';
-import { getTheme } from '@ocome/shared/theme';
+import useSliceUserPreferences from '@ocome/shared/redux-store/hooks/useUserPreferences';
+import { getTheme } from '@ocome/shared/theme/themeUtils';
 import { ThemeContext } from './themeTokensContext';
 
 interface ThemeProviderProps {
@@ -9,8 +8,8 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
-  const variant = useStoreSelector(selectThemeVariant);
-  const tokens = useMemo(() => getTheme(variant), [variant]);
+  const { theme } = useSliceUserPreferences();
+  const tokens = useMemo(() => getTheme(theme), [theme]);
 
   return <ThemeContext.Provider value={tokens}>{children}</ThemeContext.Provider>;
 };

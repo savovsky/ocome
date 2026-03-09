@@ -1,4 +1,7 @@
-import type { DesignTokens, ThemeVariant } from './themeTypes';
+import { keysThemeMode } from '../keys/keysThemeMode';
+import type { IDesignTokens } from '../types/themeTypes';
+
+const { MODE_LIGHT, MODE_DARK } = keysThemeMode;
 
 const spacing = {
   xs: 4,
@@ -32,8 +35,8 @@ const radii = {
   full: 9999,
 };
 
-export const lightTheme: DesignTokens = {
-  mode: 'light',
+export const lightTheme: IDesignTokens = {
+  mode: MODE_LIGHT,
   colors: {
     primary: '#1976d2',
     primaryDark: '#115293',
@@ -43,6 +46,7 @@ export const lightTheme: DesignTokens = {
     surface: '#ffffff',
     text: '#212121',
     textSecondary: '#757575',
+    textDisabled: '#bdbdbd',
     error: '#d32f2f',
     warning: '#f57c00',
     success: '#388e3c',
@@ -53,8 +57,8 @@ export const lightTheme: DesignTokens = {
   radii,
 };
 
-export const darkTheme: DesignTokens = {
-  mode: 'dark',
+export const darkTheme: IDesignTokens = {
+  mode: MODE_DARK,
   colors: {
     primary: '#90caf9',
     primaryDark: '#42a5f5',
@@ -64,6 +68,7 @@ export const darkTheme: DesignTokens = {
     surface: '#1e1e1e',
     text: '#f5f5f5',
     textSecondary: '#9e9e9e',
+    textDisabled: '#757575',
     error: '#ef9a9a',
     warning: '#ffcc80',
     success: '#a5d6a7',
@@ -74,8 +79,8 @@ export const darkTheme: DesignTokens = {
   radii,
 };
 
-export const coldTheme: DesignTokens = {
-  mode: 'light',
+export const coldTheme: IDesignTokens = {
+  mode: MODE_LIGHT,
   colors: {
     primary: '#0288d1',
     primaryDark: '#01579b',
@@ -85,6 +90,7 @@ export const coldTheme: DesignTokens = {
     surface: '#ffffff',
     text: '#1a2a3a',
     textSecondary: '#4a6272',
+    textDisabled: '#90a4ae',
     error: '#c62828',
     warning: '#e65100',
     success: '#2e7d32',
@@ -95,8 +101,8 @@ export const coldTheme: DesignTokens = {
   radii,
 };
 
-export const warmTheme: DesignTokens = {
-  mode: 'light',
+export const warmTheme: IDesignTokens = {
+  mode: MODE_LIGHT,
   colors: {
     primary: '#e65100',
     primaryDark: '#bf360c',
@@ -106,6 +112,7 @@ export const warmTheme: DesignTokens = {
     surface: '#ffffff',
     text: '#3e2723',
     textSecondary: '#795548',
+    textDisabled: '#a1887f',
     error: '#b71c1c',
     warning: '#e65100',
     success: '#33691e',
@@ -115,16 +122,3 @@ export const warmTheme: DesignTokens = {
   typography,
   radii,
 };
-
-const themes: Record<ThemeVariant, DesignTokens> = {
-  light: lightTheme,
-  dark: darkTheme,
-  cold: coldTheme,
-  warm: warmTheme,
-};
-
-export function getTheme(variant: ThemeVariant): DesignTokens {
-  return themes[variant] ?? lightTheme;
-}
-
-export type { DesignTokens, ThemeVariant };

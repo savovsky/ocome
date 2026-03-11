@@ -6,7 +6,7 @@ import type {
   ISpacingTokens,
   ITypographyTokens,
 } from '@ocome/shared/types/themeTypes';
-import { ThemeContext } from './themeTokensContext';
+import { ThemeContext } from '../components/themeTokensContext';
 
 export function useTheme(): IDesignTokens {
   return useContext(ThemeContext);

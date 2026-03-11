@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Text, View } from 'react-native';
 import { useGetUsersQuery } from '@ocome/shared/redux-store/apis/apiUsers';
-import { useColors } from './useTheme';
+import { useColors } from '../hooks/useTheme';
 
 const Users: FC = () => {
   const colors = useColors();

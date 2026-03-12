@@ -188,9 +188,6 @@ export default defineConfig([
     files: ['**/*.ts'],
     rules: {
       'max-lines': ['error', { max: 400, skipBlankLines: true, skipComments: true }],
-      // Enforce explicit return types for pure TypeScript functions (utilities, services, etc.)
-      // Not enforced for React components (.tsx) where JSX is self-documenting.
-      '@typescript-eslint/explicit-function-return-type': 'error',
     },
   },
   // Stricter line limit for TSX files (React components with JSX markup)

@@ -16,14 +16,16 @@ Do not infer this workflow from ambiguous phrases such as "ship this".
 
 ### Step 1: Quality Checks
 
-Run all linters and type checks across apps and packages without asking for approval:
+Run all linters and type checks across apps and packages without asking for approval.
+
+**CRITICAL:** Use `--force` flag to bypass turbo cache and ensure fresh checks that catch actual errors:
 
 ```bash
-pnpm lint
+pnpm turbo run lint --force
 ```
 
 ```bash
-pnpm tsc
+pnpm turbo run tsc --force
 ```
 
 If either command fails:
@@ -44,7 +46,7 @@ git add .
 
 ### Step 3: Propose Commit Message
 
-After staging, suggest a conventional commit message based on the changes. Format as follows:
+After staging, compose a conventional commit message based on the changes. Format as follows:
 
 ```text
 <type>(<scope>): <subject>
@@ -52,13 +54,15 @@ After staging, suggest a conventional commit message based on the changes. Forma
 <body>
 ```
 
-**Use the vscode_askQuestions tool to present options as buttons:**
+**First, display the proposed commit message** in a regular text response so the user can review it in full.
+
+**Then, use the vscode_askQuestions tool to present approval options as buttons:**
 
 - Option 1: "Approve" - Use the message as-is
 - Option 2: "Edit" - Allow user to provide a custom commit message (set allowFreeformInput: true)
 - Option 3: "Cancel" - Stop the workflow
 
-If user selects "Edit", prompt them again to enter their custom commit message.
+If user selects "Edit", present a new question with allowFreeformInput: true to gather their custom commit message.
 
 ### Step 4: Commit
 

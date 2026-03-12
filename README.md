@@ -149,13 +149,10 @@ Both apps use **manual dispatch** for releases:
 
 ## 📖 Architecture
 
-See [Architecture Decision Record](docs/architecture/ADR-001-monorepo-structure.md) for:
+See Architecture Decision Records for design rationale:
 
-- Why monorepo structure
-- Why pnpm + Turborepo
-- Release strategy reasoning
-- Shared code philosophy
-- Future considerations
+- **[ADR-001: Monorepo Structure](docs/architecture/ADR-001-monorepo-structure.md)** — Why monorepo, pnpm, Turborepo, release strategy, shared code philosophy
+- **[ADR-002: Redux Hooks & User Preferences](docs/architecture/ADR-002-redux-hooks-userpreferences.md)** — Slice-specific hooks pattern, unified user preferences, theme refactoring
 
 ## 🛠️ Development Guidelines
 
@@ -163,7 +160,9 @@ See [Architecture Decision Record](docs/architecture/ADR-001-monorepo-structure.
 
 **Shared utility?** → `shared/src/`  
 **Shared type?** → `shared/src/types/`  
-**Shared state/API logic?** → `shared/src/state/`  
+**Shared keys/constants?** → `shared/src/keys/`  
+**Shared theme?** → `shared/src/theme/`  
+**Shared state/API logic?** → `shared/src/redux-store/`  
 **Web feature?** → `apps/web/src/`  
 **Mobile feature?** → `apps/mobile/src/`
 
@@ -265,4 +264,4 @@ For recurring implementation tasks, refer to these guides:
 
 ---
 
-**Last Updated:** March 4, 2026
+**Last Updated:** March 9, 2026

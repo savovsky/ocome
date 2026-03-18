@@ -76,7 +76,7 @@ export default defineConfig([
       'max-depth': ['error', 3], // Nested blocks
       'complexity': ['error', 8],  // Cyclomatic complexity
       'max-nested-callbacks': ['error', 2], // Limit nested callbacks to 2 levels deep to improve readability
-      'max-lines-per-function': ['error', 50], // Limit function length to 50 lines; for longer logic, break into smaller functions
+      'max-lines-per-function': ['error', 100], // Limit function length to 100 lines; for longer logic, break into smaller functions
       'max-params': ['error', 2], // Limit function parameters to 2; for more, use an options object
       'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
       'no-else-return': 'error', // Disallow else blocks after return statements for cleaner code

@@ -4,7 +4,7 @@
 
 This document contains the execution-ready checklist derived from [ADR-003 Invitation, Role, and Billing Model for Coach-Team App](ADR-003-invitation-role-billing-model.md).
 
-Use this checklist to implement the invitation, role, and billing model across shared, web, and mobile.
+Use this checklist to implement the invitation, role, and billing model across `packages/shared`, `apps/web`, and `apps/mobile`.
 
 ## Phase 1 Identity and Invitation Backbone
 
@@ -47,7 +47,7 @@ Use this checklist to implement the invitation, role, and billing model across s
 
 ## Package Mapping
 
-### shared
+### packages/shared
 
 1. Invitation schemas, role models, entitlement checks, and authorization helpers.
 2. Shared keys/types for invite states, roles, and entitlement flags.

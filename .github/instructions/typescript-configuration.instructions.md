@@ -17,7 +17,7 @@ Use this file for always-on TypeScript constraints.
   - `apps/web/tsconfig.web-base.json` = shared Vite/Web compiler defaults.
   - `apps/web/tsconfig.app.json` and `apps/web/tsconfig.node.json` = Vite-specific leaf configs extending the web base.
   - `apps/mobile/tsconfig.json` and `packages/shared/tsconfig.json` = extend base and override as needed.
-- Do not force `shared` to use Vite app settings (`types: ["vite/client"]`, browser libs, app-only `baseUrl`).
+- Do not force `packages/shared` to use Vite app settings (`types: ["vite/client"]`, browser libs, app-only `baseUrl`).
 
 ## Required Invariants
 

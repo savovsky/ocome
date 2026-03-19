@@ -12,7 +12,7 @@ Keep this file minimal; load detailed CI procedures from the CI skill only when 
 
 - Web changes: `pnpm turbo run tsc --filter=web`, `pnpm turbo run lint --filter=web`, `pnpm turbo run build --filter=web`
 - Mobile changes: `pnpm turbo run tsc --filter=mobile`, `pnpm turbo run lint --filter=mobile`
-- Shared changes: `pnpm turbo run tsc --filter="./shared"`, `pnpm turbo run lint --filter="./shared"`
+- Shared changes: `pnpm turbo run tsc --filter="./packages/shared"`, `pnpm turbo run lint --filter="./packages/shared"`
 
 ## Deep Playbook
 

@@ -4,7 +4,7 @@ Use these always-on rules when touching Redux/RTK Query in shared code.
 
 ## Location Rules
 
-- Redux store lives under `shared/src/redux-store/`.
+- Redux store lives under `packages/shared/src/redux-store/`.
 - App code consumes shared exports via `@ocome/shared/redux-store`.
 - Keep store APIs centralized in shared package.
 
@@ -16,7 +16,7 @@ Use these always-on rules when touching Redux/RTK Query in shared code.
 
 ## Validation
 
-- Run `pnpm --filter "./shared" tsc` and `pnpm --filter "./shared" lint`.
+- Run `pnpm --filter "./packages/shared" tsc` and `pnpm --filter "./packages/shared" lint`.
 - Run app checks for consumers impacted by shared changes.
 
 ## Deep Playbook

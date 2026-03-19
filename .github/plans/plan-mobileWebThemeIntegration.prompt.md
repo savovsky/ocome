@@ -21,7 +21,7 @@ ThemeProvider reads Redux → Render with correct theme (zero flash)
 
 ### Phase 1: Add Shared Utility for System Detection
 
-**File:** `shared/src/theme/themeUtils.ts`
+**File:** `packages/shared/src/theme/themeUtils.ts`
 
 **Action:** Add new exported function `detectSystemTheme()` that:
 - Detects native system preference (mobile: via `useColorScheme` from react-native, web: via CSS media query `(prefers-color-scheme: dark)`)
@@ -120,10 +120,10 @@ If platform is web:
 
 ## Relevant Files
 
-- `shared/src/theme/themeUtils.ts` — Add `detectSystemTheme()` function
-- `shared/src/keys/keysTheme.ts` — Reference for THEME_LIGHT, THEME_DARK constants (no changes)
-- `shared/src/redux-store/slices/sliceUserPreferences.ts` — Reference for `setTheme` action (no changes)
-- `shared/src/redux-store/hooks/useSliceModals.ts` — Reference pattern for Redux hooks (no changes)
+- `packages/shared/src/theme/themeUtils.ts` — Add `detectSystemTheme()` function
+- `packages/shared/src/keys/keysTheme.ts` — Reference for THEME_LIGHT, THEME_DARK constants (no changes)
+- `packages/shared/src/redux-store/slices/sliceUserPreferences.ts` — Reference for `setTheme` action (no changes)
+- `packages/shared/src/redux-store/hooks/useSliceModals.ts` — Reference pattern for Redux hooks (no changes)
 - `apps/mobile/src/components/ThemeContext.tsx` — Add initialization effect
 - `apps/mobile/src/hooks/use-color-scheme.ts` — Simplify to direct export
 - `apps/mobile/src/constants/theme.ts` — DELETE

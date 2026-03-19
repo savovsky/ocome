@@ -26,8 +26,8 @@ pnpm turbo run build --filter=web
 pnpm turbo run tsc --filter=mobile
 pnpm turbo run lint --filter=mobile
 
-pnpm turbo run tsc --filter="./shared"
-pnpm turbo run lint --filter="./shared"
+pnpm turbo run tsc --filter="./packages/shared"
+pnpm turbo run lint --filter="./packages/shared"
 ```
 
 ## Safe Change Pattern

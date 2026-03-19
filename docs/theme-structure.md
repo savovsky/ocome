@@ -6,13 +6,13 @@ Four built-in variants: `THEME_LIGHT`, `THEME_DARK`, `THEME_COLD`, `THEME_WARM`.
 ## Architecture
 
 ```text
-shared/src/keys/keysTheme.ts                           - Theme variant constants
-shared/src/keys/keysThemeMode.ts                       - Theme mode constants (light/dark)
-shared/src/types/themeTypes.ts                         - TypeScript interfaces (IDesignTokens, ITheme, IThemeMode)
-shared/src/theme/themeTokens.ts                        - Token values for 4 variants
-shared/src/theme/themeUtils.ts                         - Helper functions (getTheme, getContrastTextColor)
-shared/src/redux-store/slices/sliceUserPreferences.ts - Redux slice for theme + language (persisted)
-shared/src/redux-store/hooks/useUserPreferences.ts    - Typed hook for user preferences slice
+packages/shared/src/keys/keysTheme.ts                           - Theme variant constants
+packages/shared/src/keys/keysThemeMode.ts                       - Theme mode constants (light/dark)
+packages/shared/src/types/themeTypes.ts                         - TypeScript interfaces (IDesignTokens, ITheme, IThemeMode)
+packages/shared/src/theme/themeTokens.ts                        - Token values for 4 variants
+packages/shared/src/theme/themeUtils.ts                         - Helper functions (getTheme, getContrastTextColor)
+packages/shared/src/redux-store/slices/sliceUserPreferences.ts - Redux slice for theme + language (persisted)
+packages/shared/src/redux-store/hooks/useUserPreferences.ts    - Typed hook for user preferences slice
 apps/web/src/utils/muiThemeAdapter.ts                  - IDesignTokens → MUI Theme
 apps/web/src/components/ThemedMuiProvider.tsx          - Web theme provider  
 apps/web/src/components/ThemePlayground.tsx            - Visual theme explorer
@@ -92,7 +92,7 @@ apps/mobile/src/components/useTheme.ts                 - Mobile convenience hook
 The theme system uses strongly-typed constants defined in key files:
 
 ```typescript
-// shared/src/keys/keysTheme.ts
+// packages/shared/src/keys/keysTheme.ts
 export const keysTheme = {
   THEME_LIGHT: 'THEME_LIGHT',
   THEME_DARK: 'THEME_DARK',
@@ -100,7 +100,7 @@ export const keysTheme = {
   THEME_WARM: 'THEME_WARM',
 } as const;
 
-// shared/src/keys/keysThemeMode.ts
+// packages/shared/src/keys/keysThemeMode.ts
 export const keysThemeMode = {
   MODE_LIGHT: 'light',
   MODE_DARK: 'dark',
@@ -250,7 +250,7 @@ The slice provides these actions:
 
 ## Adding a New Theme Variant
 
-1. Add the variant constant to `shared/src/keys/keysTheme.ts`
+1. Add the variant constant to `packages/shared/src/keys/keysTheme.ts`
 
    ```typescript
    export const keysTheme = {
@@ -262,7 +262,7 @@ The slice provides these actions:
    } as const;
    ```
 
-2. Create the token object in `shared/src/theme/themeTokens.ts`
+2. Create the token object in `packages/shared/src/theme/themeTokens.ts`
 
    ```typescript
    export const myVariantTheme: IDesignTokens = {
@@ -274,7 +274,7 @@ The slice provides these actions:
    };
    ```
 
-3. Add it to the switch statement in `shared/src/theme/themeUtils.ts`
+3. Add it to the switch statement in `packages/shared/src/theme/themeUtils.ts`
 
    ```typescript
    export function getTheme(theme: ITheme): IDesignTokens {
@@ -303,7 +303,7 @@ The slice provides these actions:
 
 ## Adding a New Token Category
 
-1. Add the interface to `shared/src/types/themeTypes.ts`
+1. Add the interface to `packages/shared/src/types/themeTypes.ts`
 
    ```typescript
    export interface IShadowTokens {
@@ -322,7 +322,7 @@ The slice provides these actions:
    }
    ```
 
-2. Add values to each variant in `shared/src/theme/themeTokens.ts`.
+2. Add values to each variant in `packages/shared/src/theme/themeTokens.ts`.
 
 3. For MUI: extend `createMuiTheme()` in `apps/web/src/utils/muiThemeAdapter.ts`.
 

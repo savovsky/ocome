@@ -75,3 +75,6 @@ expo-env.d.ts
 
 # App example
 app-example
+
+# Private local planning notes
+docs/project-discussion-private.md

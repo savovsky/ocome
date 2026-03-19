@@ -26,8 +26,8 @@ pnpm --filter web tsc
 pnpm --filter web lint
 pnpm --filter mobile tsc
 pnpm --filter mobile lint
-pnpm --filter "./shared" tsc
-pnpm --filter "./shared" lint
+pnpm --filter "./packages/shared" tsc
+pnpm --filter "./packages/shared" lint
 ```
 
 ## Escalation Steps

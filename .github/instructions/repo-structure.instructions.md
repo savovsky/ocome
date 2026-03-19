@@ -12,13 +12,14 @@ Use this file as the always-on, low-token baseline for AI coding work in this re
 
 - `apps/web`: React + Vite app (`@ocome/web`)
 - `apps/mobile`: React Native + Expo app (`@ocome/mobile`)
-- `shared`: shared logic/state/types (`@ocome/shared`)
+- `packages/shared`: shared logic/state/types (`@ocome/shared`)
+- `packages/backend`: reserved backend package location
 - `.github/instructions`: always-on repo guidance
 - `.github/skills`: task-specific, on-demand playbooks
 
 ## Architecture Invariants
 
-- Apps may import from `@ocome/shared`; `shared` must not import from app code.
+- Apps may import from `@ocome/shared`; `packages/shared` must not import from app code.
 - Do not create shared UI across web/mobile unless explicitly requested.
 - Keep changes scoped to the user request; avoid unrelated refactors.
 

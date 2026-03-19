@@ -47,7 +47,7 @@ Use this checklist to implement the invitation, role, and billing model across s
 
 ## Package Mapping
 
-### shared
+### packages/shared
 
 1. Invitation schemas, role models, entitlement checks, and authorization helpers.
 2. Shared keys/types for invite states, roles, and entitlement flags.

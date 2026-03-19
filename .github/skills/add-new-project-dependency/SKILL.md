@@ -14,8 +14,8 @@ description: Decide where dependencies belong in this monorepo (root/web/mobile/
 - Root `package.json` `devDependencies`: tooling only (build/lint/test/config).
 - `apps/web/package.json`: libraries imported by web app source.
 - `apps/mobile/package.json`: libraries imported by mobile app source.
-- `shared/package.json` `dependencies`: runtime libs imported by shared implementation.
-- `shared/package.json` `peerDependencies`: host-provided libs (e.g., `react`, `react-redux`).
+- `packages/shared/package.json` `dependencies`: runtime libs imported by shared implementation.
+- `packages/shared/package.json` `peerDependencies`: host-provided libs (e.g., `react`, `react-redux`).
 
 ## Repo-Specific Rules
 
@@ -34,7 +34,7 @@ description: Decide where dependencies belong in this monorepo (root/web/mobile/
 
 ```bash
 pnpm install
-pnpm --filter "./shared" tsc
+pnpm --filter "./packages/shared" tsc
 pnpm --filter web tsc
 pnpm --filter mobile tsc
 pnpm lint

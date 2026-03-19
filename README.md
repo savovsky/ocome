@@ -19,7 +19,9 @@ ocome/
 ├── apps/
 │   ├── web/                   # Web SPA (React + Vite)
 │   └── mobile/                # Mobile app (React Native + Expo)
-├── shared/                    # Cross-platform state, types, utilities, helpers
+├── packages/
+│   ├── shared/                # Cross-platform state, types, utilities, helpers
+│   └── backend/               # Backend package placeholder (reserved)
 ├── docs/architecture/         # Architecture decision records
 ├── .github/workflows/         # CI/CD pipelines
 └── [config files]
@@ -31,8 +33,8 @@ ocome/
 - `tsconfig.json` (root) and `apps/web/tsconfig.json`: solution configs using `references` only.
 - `apps/web/tsconfig.web-base.json`: shared web/Vite defaults for web leaf configs.
 - `apps/web/tsconfig.app.json` and `apps/web/tsconfig.node.json`: Vite-specific leaf configs that extend web base.
-- `apps/mobile/tsconfig.json` and `shared/tsconfig.json`: extend base and override for target needs.
-- `shared` intentionally does not inherit Vite app config, so browser-only assumptions do not leak into mobile.
+- `apps/mobile/tsconfig.json` and `packages/shared/tsconfig.json`: extend base and override for target needs.
+- `packages/shared` intentionally does not inherit Vite app config, so browser-only assumptions do not leak into mobile.
 
 ### Prerequisites
 
@@ -158,11 +160,11 @@ See Architecture Decision Records for design rationale:
 
 ### Adding new code
 
-**Shared utility?** → `shared/src/`  
-**Shared type?** → `shared/src/types/`  
-**Shared keys/constants?** → `shared/src/keys/`  
-**Shared theme?** → `shared/src/theme/`  
-**Shared state/API logic?** → `shared/src/redux-store/`  
+**Shared utility?** → `packages/shared/src/`  
+**Shared type?** → `packages/shared/src/types/`  
+**Shared keys/constants?** → `packages/shared/src/keys/`  
+**Shared theme?** → `packages/shared/src/theme/`  
+**Shared state/API logic?** → `packages/shared/src/redux-store/`  
 **Web feature?** → `apps/web/src/`  
 **Mobile feature?** → `apps/mobile/src/`
 
@@ -182,7 +184,7 @@ See Architecture Decision Records for design rationale:
 Changes to `packages/` may trigger rebuilds of dependent apps:
 
 ```bash
-# Only builds web if web/ or shared/ changed
+# Only builds web if apps/web/ or packages/shared/ changed
 pnpm turbo run build --filter=web
 ```
 
@@ -249,8 +251,8 @@ pnpm turbo run build      # Build with Turborepo caching
 
 For recurring implementation tasks, refer to these guides:
 
-- **[Adding Project Dependencies](.github/skills/add-new-project-dependency/SKILL.md)** — Decide exact dependency ownership (root/web/mobile/shared) and validation workflow
-- **[Creating/Updating Markdown Files](.github/skills/create-update-md-file/SKILL.md)** — Follow markdownlint rules for consistent documentation
+- **[Adding Project Dependencies](.github/skills/add-new-project-dependency/SKILL.md)** — Decide exact dependency ownership (root/web/mobile/packages/shared) and validation workflow
+- **[Creating/Updating Markdown Files](.github/skills/create-update-markdown-file/SKILL.md)** — Follow markdownlint rules for consistent documentation
 - **[CI/CD Workflows](.github/skills/ci-cd-workflows/SKILL.md)** — Apply and debug GitHub Actions workflows with package-scoped checks
 - **[Redux State Management](.github/skills/redux-state-management/SKILL.md)** — Implement slices, RTK Query endpoints, and shared state updates safely
 - **[Troubleshooting](.github/skills/troubleshooting/SKILL.md)** — Use a least-destructive debugging workflow for build/dev/type/lint issues

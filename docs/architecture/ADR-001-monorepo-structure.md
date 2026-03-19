@@ -62,7 +62,9 @@ ocome/
 ├── apps/
 │   ├── web/                    # React + Vite desktop app (independent version)
 │   └── mobile/                 # React Native + Expo mobile app (independent version)
-├── shared/                     # Cross-platform state, types, helpers, utilities
+├── packages/
+│   ├── shared/                 # Cross-platform state, types, helpers, utilities
+│   └── backend/                # Backend package placeholder (reserved)
 ├── .github/
 │   └── workflows/              # CI/CD pipelines
 ├── docs/
@@ -82,11 +84,11 @@ ocome/
 - Clear separation between deployable applications and libraries
 - Easy to identify what gets deployed vs. what's internal
 
-#### **Shared code at root level**
+#### **Shared code under packages/**
 
-- `shared/` → Utilities, helpers, validation logic, shared types, and cross-platform state/api logic
-- Located at root for direct access without additional nesting
-- Simplifies the monorepo structure for a single shared package
+- `packages/shared/` → Utilities, helpers, validation logic, shared types, and cross-platform state/api logic
+- Placed under `packages/` to keep internal libraries grouped consistently
+- Aligns with future expansion (for example `packages/backend`) while preserving a single shared package
 
 #### **NO shared UI components**
 
@@ -177,7 +179,7 @@ shared:     internal only (not versioned externally)
 
 ✅ **Shareable:**
 
-- Type definitions (`shared/src/types`)
+- Type definitions (`packages/shared/src/types`)
 - Validation logic
 - Utility functions
 - API client and RTK Query endpoints

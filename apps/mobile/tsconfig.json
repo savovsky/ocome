@@ -11,9 +11,9 @@
     "src",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "../../shared/src"
+    "../../packages/shared/src"
   ],
   "references": [
-    { "path": "../../shared" }
+    { "path": "../../packages/shared" }
   ]
 }

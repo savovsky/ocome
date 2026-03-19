@@ -50,8 +50,8 @@ Establish Clerk authentication in both web and mobile with provider wiring, sess
 - apps/mobile/src/app/index.tsx - signed-in entry behavior.
 - apps/mobile/expo-env.d.ts - confirm Expo env typing approach.
 - apps/mobile/app.json - verify deep-link/runtime config compatibility.
-- shared/src/redux-store/index.ts - confirm Redux local-state ownership remains unchanged.
-- shared/src/redux-store/apis/baseApi.ts - explicitly no Phase 1 migration changes.
+- packages/shared/src/redux-store/index.ts - confirm Redux local-state ownership remains unchanged.
+- packages/shared/src/redux-store/apis/baseApi.ts - explicitly no Phase 1 migration changes.
 
 **Verification**
 
@@ -59,7 +59,7 @@ Establish Clerk authentication in both web and mobile with provider wiring, sess
 2. Run: pnpm --filter web tsc
 3. Run: pnpm --filter mobile lint
 4. Run: pnpm --filter mobile tsc
-5. If shared is touched, also run: pnpm --filter "./shared" lint and pnpm --filter "./shared" tsc
+5. If shared is touched, also run: pnpm --filter "./packages/shared" lint and pnpm --filter "./packages/shared" tsc
 6. Manual checks on both apps for auth entry, sign-in, sign-up, sign-out, and guarded content visibility
 7. Boundary checks: no platform Clerk SDK imports in shared, no Convex work, no RTK Query migration in this phase
 

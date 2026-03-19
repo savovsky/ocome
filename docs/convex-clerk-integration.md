@@ -10,7 +10,7 @@ It is intended to be used later as the basis for a detailed implementation plan.
 
 - `apps/web` is a React and Vite application.
 - `apps/mobile` is a React Native and Expo application.
-- `shared` contains shared types, theme logic, and the current Redux store.
+- `packages/shared` contains shared types, theme logic, and the current Redux store.
 - Shared remote data access is currently modeled through RTK Query.
 - Local persisted client state is currently handled with Redux and `redux-persist`.
 
@@ -77,8 +77,8 @@ It is intended to be used later as the basis for a detailed implementation plan.
 - `apps/web` should own web-specific Clerk provider wiring and web environment variables.
 - `apps/mobile` should own Expo-specific Clerk provider wiring and secure session storage details.
 - Convex client wiring will exist in both apps, adapted to each runtime.
-- Shared domain types and reusable non-platform-specific helpers can remain in `shared`.
-- `shared` must not import app-specific web or mobile runtime code.
+- Shared domain types and reusable non-platform-specific helpers can remain in `packages/shared`.
+- `packages/shared` must not import app-specific web or mobile runtime code.
 
 ## Provider Strategy
 
@@ -126,7 +126,7 @@ It is intended to be used later as the basis for a detailed implementation plan.
 - Mobile token and session handling require more care than web setup.
 - Authorization mistakes can happen if backend checks are deferred or treated as optional.
 - If Redux scope is not reduced, remote and local state concerns may drift back together.
-- If shared code becomes coupled to runtime-specific auth details, the monorepo boundaries will erode.
+- If `packages/shared` code becomes coupled to runtime-specific auth details, the monorepo boundaries will erode.
 
 ## Questions To Answer Before Implementation Planning
 
@@ -140,7 +140,7 @@ It is intended to be used later as the basis for a detailed implementation plan.
 
 The later implementation plan should produce:
 
-- package-level dependency placement for web, mobile, shared, and root
+- package-level dependency placement for web, mobile, packages/shared, and root
 - provider and bootstrap changes in each app
 - initial Convex schema and auth integration shape
 - RTK Query removal steps
@@ -153,7 +153,7 @@ Use this checklist to validate whether implementation remains on-track with the 
 
 ### Green
 
-- `shared` only contains runtime-agnostic code (types, keys, theme, local state logic) and does not import web or mobile runtime APIs.
+- `packages/shared` only contains runtime-agnostic code (types, keys, theme, local state logic) and does not import web or mobile runtime APIs.
 - Clerk is the only source of truth for identity, session, org membership, and roles.
 - Convex functions enforce authorization server-side for sensitive queries and mutations.
 - Remote entities are fetched and mutated through Convex hooks, not Redux slices or RTK Query endpoints.
@@ -166,12 +166,12 @@ Use this checklist to validate whether implementation remains on-track with the 
 - Some remote data still flows through RTK Query while Convex is partially adopted.
 - A small amount of auth or org context is duplicated in Redux for convenience.
 - Authorization checks exist for most, but not all, sensitive Convex operations.
-- `shared` has helper code that is close to runtime-specific concerns, but still isolated.
+- `packages/shared` has helper code that is close to runtime-specific concerns, but still isolated.
 - One platform (usually mobile) is behind in auth/session hardening.
 
 ### Red
 
-- `shared` imports app-specific code or runtime SDKs, breaking monorepo boundaries.
+- `packages/shared` imports app-specific code or runtime SDKs, breaking monorepo boundaries.
 - Redux is still used as a source of truth for backend entities or auth/permission truth.
 - Client-side role checks are relied on without matching server-side Convex authorization.
 - RTK Query and Convex both remain primary remote data paths with overlapping ownership.
@@ -186,8 +186,8 @@ Before marking migration milestones complete, confirm:
 2. Auth and organization truth is Clerk-only.
 3. Convex authorization checks exist for every sensitive operation.
 4. Redux usage is limited to local persisted client state.
-5. `shared` remains runtime-agnostic.
-6. `web`, `mobile`, and `shared` pass lint and type-check in package scope.
+5. `packages/shared` remains runtime-agnostic.
+6. `web`, `mobile`, and `packages/shared` pass lint and type-check in package scope.
 
 ## Final Recommendation
 

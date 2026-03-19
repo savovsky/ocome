@@ -7,7 +7,7 @@ Always follow these constraints for code changes.
 - Prefer package-scoped checks first:
   - `pnpm --filter web lint`
   - `pnpm --filter mobile lint`
-  - `pnpm --filter "./shared" lint`
+  - `pnpm --filter "./packages/shared" lint`
   - matching `tsc` command for changed package(s)
 
 ## Coding Rules

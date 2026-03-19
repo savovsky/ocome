@@ -20,8 +20,9 @@ ocome/
 │       ├── tsconfig.web-base.json # Shared web/Vite compiler options
 │       ├── tsconfig.app.json  # Vite app config (extends web base, react-jsx)
 │       └── tsconfig.node.json # Vite tooling config (extends web base, Node.js)
-└── shared/
-    └── tsconfig.json          # Shared library config (extends base)
+└── packages/
+    └── shared/
+        └── tsconfig.json      # Shared library config (extends base)
 ```
 
 ## Configuration Files Explained
@@ -42,7 +43,7 @@ ocome/
 **Who extends it:**
 
 - `apps/mobile/tsconfig.json`
-- `shared/tsconfig.json`
+- `packages/shared/tsconfig.json`
 
 ### `tsconfig.json` (Root)
 
@@ -69,10 +70,10 @@ Solution configs should not inherit compiler options that affect emit behavior, 
 - `allowImportingTsExtensions: true` - Allow importing `.ts` files directly
 - `verbatimModuleSyntax: true` - Preserve ES module syntax as written
 - `moduleDetection: "force"` - Force module detection for all files
-- `include: ["src", ".expo/types/**/*.ts", "expo-env.d.ts", "../../shared/src"]` - Include app source and shared package
+- `include: ["src", ".expo/types/**/*.ts", "expo-env.d.ts", "../../packages/shared/src"]` - Include app source and shared package
 - `references` - Links to shared package
 
-**Note on shared package inclusion:** The `include` pattern explicitly lists `../../shared/src` to ensure TypeScript properly resolves and type-checks all shared package dependencies during compilation. This is required for composite project builds to work correctly.
+**Note on shared package inclusion:** The `include` pattern explicitly lists `../../packages/shared/src` to ensure TypeScript properly resolves and type-checks all shared package dependencies during compilation. This is required for composite project builds to work correctly.
 
 ### `apps/web/tsconfig.json`
 
@@ -101,9 +102,9 @@ The Vite app needs two distinct compiler configs (one for app code, one for buil
 - `lib: ["ES2022", "DOM", "DOM.Iterable"]` - Modern JS + DOM types
 - `types: ["vite/client"]` - Vite-specific types
 - `baseUrl: "../../"` - Resolve imports from monorepo root
-- `include: ["src", "../../shared/src"]` - Include app source and shared package
+- `include: ["src", "../../packages/shared/src"]` - Include app source and shared package
 
-**Note on shared package inclusion:** The `include` pattern explicitly lists `../../shared/src` to ensure TypeScript properly resolves and type-checks all shared package dependencies during compilation. This is required for composite project builds to work correctly.
+**Note on shared package inclusion:** The `include` pattern explicitly lists `../../packages/shared/src` to ensure TypeScript properly resolves and type-checks all shared package dependencies during compilation. This is required for composite project builds to work correctly.
 
 ### `apps/web/tsconfig.web-base.json`
 
@@ -145,7 +146,7 @@ Both `tsconfig.app.json` and `tsconfig.node.json` share common settings (bundler
 - `noEmit: true` - Config files aren't emitted
 - `include: ["vite.config.ts"]` - Build tooling only
 
-### `shared/tsconfig.json`
+### `packages/shared/tsconfig.json`
 
 **Purpose:** Shared package configurations.
 
@@ -157,13 +158,13 @@ Both `tsconfig.app.json` and `tsconfig.node.json` share common settings (bundler
 - `rootDir: "./src"` - Source directory
 - `include: ["src"]` - Package source files
 
-### Why `shared` does not use web app config
+### Why `packages/shared` does not use web app config
 
-`shared` is a cross-platform library consumed by both web and mobile.
+`packages/shared` is a cross-platform library consumed by both web and mobile.
 
 - It should inherit platform-neutral defaults from `tsconfig.base.json`.
 - It should not inherit Vite app-only settings from `apps/web/tsconfig.app.json` (for example `types: ["vite/client"]`, browser-focused libs, and app-local `baseUrl`).
-- Keeping `shared` independent from web app config prevents browser-specific assumptions from leaking into mobile consumers.
+- Keeping `packages/shared` independent from web app config prevents browser-specific assumptions from leaking into mobile consumers.
 
 ## How Project References Work
 
@@ -197,7 +198,7 @@ When apps reference the shared package, the `include` pattern must explicitly li
 
 ```json
 {
-  "include": ["src", "../../shared/src"]
+  "include": ["src", "../../packages/shared/src"]
 }
 ```
 

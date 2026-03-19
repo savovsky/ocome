@@ -17,8 +17,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@ocome/shared/*": ["shared/src/*"],
-      "@ocome/shared/redux-store/*": ["shared/src/redux-store/*"]
+      "@ocome/shared/*": ["packages/shared/src/*"],
+      "@ocome/shared/redux-store/*": ["packages/shared/src/redux-store/*"]
     },
 
     /* Library output defaults */

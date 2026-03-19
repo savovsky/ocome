@@ -1,4 +1,4 @@
-import { type ThunkDispatch, type UnknownAction, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
   FLUSH,
   PAUSE,
@@ -48,7 +48,7 @@ export const createStore = (storage: any) => {
 // https://react-redux.js.org/using-react-redux/usage-with-typescript
 // Infer the `StoreState` and `StoreDispatch` types from the store itself
 export type StoreState = ReturnType<ReturnType<typeof createStore>['store']['getState']>;
-export type StoreDispatch = ThunkDispatch<StoreState, any, UnknownAction>;
+export type StoreDispatch = ReturnType<typeof createStore>['store']['dispatch'];
 
 // TODO: verify why this export is needed and if it can be removed (there is one baseApi))
 export { apiUsers };

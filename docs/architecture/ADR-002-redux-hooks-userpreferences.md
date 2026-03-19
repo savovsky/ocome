@@ -60,7 +60,7 @@ We have decided to implement:
 ### Slice Structure
 
 ```typescript
-// shared/src/redux-store/slices/sliceUserPreferences.ts
+// packages/shared/src/redux-store/slices/sliceUserPreferences.ts
 export interface ISlice {
   theme: ITheme;
   language: ILanguage;
@@ -80,7 +80,7 @@ export const sliceUserPreferences = createSlice({
 ### Hook Pattern
 
 ```typescript
-// shared/src/redux-store/hooks/useUserPreferences.ts
+// packages/shared/src/redux-store/hooks/useUserPreferences.ts
 function useSliceUserPreferences() {
   const sliceUserPreferences = useStoreSelector((state) => state.userPreferences);
   return sliceUserPreferences;
@@ -90,17 +90,17 @@ function useSliceUserPreferences() {
 ### Theme Structure
 
 ```text
-shared/src/keys/keysTheme.ts          - Theme constants (THEME_LIGHT, etc.)
-shared/src/keys/keysThemeMode.ts      - Mode constants (MODE_LIGHT, MODE_DARK)  
-shared/src/theme/themeTokens.ts       - Token definitions for all variants
-shared/src/theme/themeUtils.ts        - Helper functions (getTheme, getContrastTextColor)
-shared/src/types/themeTypes.ts        - TypeScript interfaces only
+packages/shared/src/keys/keysTheme.ts          - Theme constants (THEME_LIGHT, etc.)
+packages/shared/src/keys/keysThemeMode.ts      - Mode constants (MODE_LIGHT, MODE_DARK)  
+packages/shared/src/theme/themeTokens.ts       - Token definitions for all variants
+packages/shared/src/theme/themeUtils.ts        - Helper functions (getTheme, getContrastTextColor)
+packages/shared/src/types/themeTypes.ts        - TypeScript interfaces only
 ```
 
 ### Key Definitions
 
 ```typescript
-// shared/src/keys/keysTheme.ts
+// packages/shared/src/keys/keysTheme.ts
 export const keysTheme = {
   THEME_LIGHT: 'THEME_LIGHT',
   THEME_DARK: 'THEME_DARK',
@@ -154,4 +154,4 @@ dispatch(setTheme(keysTheme.THEME_DARK));
 
 - [Redux Toolkit: Usage with TypeScript](https://redux-toolkit.js.org/usage/usage-with-typescript)
 - [React Redux: TypeScript Quick Start](https://react-redux.js.org/tutorials/typescript-quick-start)
-- [Shared package exports](../../shared/package.json)
+- [Shared package exports](../../packages/shared/package.json)

@@ -35,7 +35,7 @@ export default defineConfig([
           './tsconfig.json',
           './apps/*/tsconfig.json',
           './apps/*/tsconfig.*.json',
-          './shared/tsconfig.json',
+          './packages/shared/tsconfig.json',
         ],
         tsconfigRootDir: import.meta.dirname,
       },
@@ -54,7 +54,7 @@ export default defineConfig([
             './tsconfig.json',
             './apps/*/tsconfig.json',
             './apps/*/tsconfig.*.json',
-            './shared/tsconfig.json',
+            './packages/shared/tsconfig.json',
           ],
         },
       },
@@ -233,7 +233,7 @@ export default defineConfig([
   },
   // Ensure shared package remains app-agnostic and doesn't depend on platform-specific code
   {
-    files: ['shared/**/*.{js,ts,tsx}'],
+    files: ['packages/shared/**/*.{js,ts,tsx}'],
     rules: {
       'no-restricted-imports': [
         'error',

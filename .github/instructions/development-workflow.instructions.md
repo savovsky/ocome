@@ -14,7 +14,7 @@ Use this as the default execution policy for AI coding tasks.
 - Use filtered commands for package-scoped work:
   - `pnpm --filter web <command>`
   - `pnpm --filter mobile <command>`
-  - `pnpm --filter "./shared" <command>`
+  - `pnpm --filter "./packages/shared" <command>`
 
 ## AI Task Sequence
 
@@ -26,7 +26,7 @@ Use this as the default execution policy for AI coding tasks.
 ## Validation Defaults
 
 - App-only edits: run `tsc` and `lint` for that app.
-- Shared edits: run `./shared` checks first, then affected apps.
+- Shared edits: run `./packages/shared` checks first, then affected apps.
 - If build-related code changed, run package build.
 
 ## Post-Task Quality Gate (mandatory)

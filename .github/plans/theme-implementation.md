@@ -1,6 +1,6 @@
 # Implementation Plan: Shared Design Tokens (Option 1)
 
-**TL;DR:** Create a centralized design tokens system in `shared/` (colors, spacing, typography, etc.), then use those tokens with MUI's ThemeProvider in web and with React Native styling utilities in mobile.
+**TL;DR:** Create a centralized design tokens system in `packages/shared/` (colors, spacing, typography, etc.), then use those tokens with MUI's ThemeProvider in web and with React Native styling utilities in mobile.
 
 ---
 
@@ -8,9 +8,9 @@
 
 ### Phase 1: Design Tokens Foundation (Shared Package)
 
-1. Create `shared/src/theme/` directory structure
-   - `shared/src/theme/designTokens.ts` — Core token definitions (colors, spacing, typography, shadows, transitions)
-   - `shared/src/theme/index.ts` — Export entry point
+1. Create `packages/shared/src/theme/` directory structure
+   - `packages/shared/src/theme/designTokens.ts` — Core token definitions (colors, spacing, typography, shadows, transitions)
+   - `packages/shared/src/theme/index.ts` — Export entry point
 
 2. Define token values in `designTokens.ts`
    - Color palette (primary, secondary, success, warning, error, neutral shades)
@@ -19,7 +19,7 @@
    - Border radius values
    - Shadow definitions for web compatibility
 
-3. Export designTokens and update `shared/package.json` exports field to include `"./theme/*"`
+3. Export designTokens and update `packages/shared/package.json` exports field to include `"./theme/*"`
 
 ### Phase 2: Web App Integration (MUI Theme)
 
@@ -48,7 +48,7 @@
 
 ### Phase 4: Documentation & Export
 
-1. Update `shared/src/theme/index.ts` to export all theme utilities
+1. Update `packages/shared/src/theme/index.ts` to export all theme utilities
 
 2. Create `docs/theme-structure.md` documenting:
     - Token categories and values
@@ -64,15 +64,15 @@
 
 ### To Create
 
-- `shared/src/theme/designTokens.ts` — Core design token definitions
-- `shared/src/theme/index.ts` — Theme exports
+- `packages/shared/src/theme/designTokens.ts` — Core design token definitions
+- `packages/shared/src/theme/index.ts` — Theme exports
 - `apps/web/src/theme/muiThemeConfig.ts` — MUI theme configuration
 - `apps/mobile/src/theme/nativeThemeAdapter.ts` — React Native styling utilities
 - `docs/theme-structure.md` — Theme documentation
 
 ### To Modify
 
-- `shared/package.json` — Add `"./theme/*"` export entry
+- `packages/shared/package.json` — Add `"./theme/*"` export entry
 - `apps/web/src/main.tsx` — Wrap with ThemeProvider
 - `apps/web/src/components/App.tsx` — Optional: verify MUI components work
 - `apps/mobile/src/app/_layout.tsx` — Update to use theme utilities

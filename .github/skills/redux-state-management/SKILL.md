@@ -5,28 +5,28 @@ description: Implement and evolve Redux Toolkit + RTK Query + redux-persist patt
 
 ## Use When
 
-- Adding or changing slices in `shared/src/redux-store/slices/`.
-- Adding RTK Query endpoints in `shared/src/redux-store/apis/`.
+- Adding or changing slices in `packages/shared/src/redux-store/slices/`.
+- Adding RTK Query endpoints in `packages/shared/src/redux-store/apis/`.
 - Updating store exports/hooks/types.
 
 ## File Ownership
 
-- Store entrypoint: `shared/src/redux-store/index.ts`
-- Hooks: `shared/src/redux-store/hooks/`
-- API base + endpoints: `shared/src/redux-store/apis/`
+- Store entrypoint: `packages/shared/src/redux-store/index.ts`
+- Hooks: `packages/shared/src/redux-store/hooks/`
+- API base + endpoints: `packages/shared/src/redux-store/apis/`
 - UI apps consume shared exports only.
 
 ## Store Entrypoint Boundary
 
-- Use `shared/src/redux-store/index.ts` only to wire the store and register reducers/slices.
-- Do not add utility functions in `shared/src/redux-store/index.ts`.
-- Do not add unrelated type declarations in `shared/src/redux-store/index.ts`.
+- Use `packages/shared/src/redux-store/index.ts` only to wire the store and register reducers/slices.
+- Do not add utility functions in `packages/shared/src/redux-store/index.ts`.
+- Do not add unrelated type declarations in `packages/shared/src/redux-store/index.ts`.
 - Keep cross-cutting helpers and reusable types in dedicated files/folders (`hooks/`, `types/`, or feature files).
 
 ## Implementation Pattern
 
 1. Add/modify slice or API endpoint in shared.
-2. Register new slice reducers in `shared/src/redux-store/index.ts`.
+2. Register new slice reducers in `packages/shared/src/redux-store/index.ts`.
 3. Keep types explicit for payloads and responses in feature/type files.
 4. Keep invalidation tags consistent for query/mutation pairs.
 
@@ -47,8 +47,8 @@ description: Implement and evolve Redux Toolkit + RTK Query + redux-persist patt
 ## Validation
 
 ```bash
-pnpm --filter "./shared" tsc
-pnpm --filter "./shared" lint
+pnpm --filter "./packages/shared" tsc
+pnpm --filter "./packages/shared" lint
 pnpm --filter web tsc
 pnpm --filter mobile tsc
 ```

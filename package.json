@@ -11,7 +11,7 @@
   },
   "workspaces": [
     "apps/*",
-    "shared"
+    "packages/*"
   ],
   "scripts": {
     "dev:web": "pnpm --filter web start",

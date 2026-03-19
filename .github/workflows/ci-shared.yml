@@ -25,5 +25,5 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo run tsc --filter="./shared"
-      - run: pnpm turbo run lint --filter="./shared"
+      - run: pnpm turbo run tsc --filter="./packages/shared"
+      - run: pnpm turbo run lint --filter="./packages/shared"
